@@ -14,5 +14,10 @@ PanelWindow {
         anchors { horizontalCenter: parent.horizontalCenter }
     }
 
-    RightPill {}
+    RightPill {
+        anchors { 
+            right: parent.right
+            rightMargin: 10 
+        }
+    }
 }
