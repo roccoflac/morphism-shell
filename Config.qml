@@ -25,6 +25,7 @@ Singleton {
     readonly property int radiusMd: 12
     readonly property int radiusLg: 16
     readonly property int radiusXl: 20
+    readonly property int radius2xl: 24
     readonly property int radiusInf: 999
 
     // -- Animations -- //

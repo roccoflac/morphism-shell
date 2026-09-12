@@ -10,12 +10,13 @@ Rectangle {
     radius: height
     color: ThemeService.mdSurface
 
-     Text {
-        id: clockText
-        anchors { centerIn: parent }
-        text: `${Math.round(UPower.displayDevice.percentage * 100)}%`
+    Text {
+        id: batteryText
+        anchors.centerIn: parent
+        text: UPower.displayDevice.ready ? `${Math.round(UPower.displayDevice.percentage * 100)}%` : "0%"
+        
         color: ThemeService.mdOnSurface
-        font { pixelSize: Config.typeXl; family: Config.fontFamily2}
+        font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
 
         Behavior on color {
             ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
