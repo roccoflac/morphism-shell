@@ -39,24 +39,17 @@ Singleton {
     readonly property int easeExit: Easing.InCubic
 
     // -- Bar Config -- \\
-    readonly property int barHeight: 46
-    readonly property int pillHeight: 32
-    readonly property int pillSpacing: 8
-    readonly property int pillVerticalOffset: 5
-    readonly property int horizontalMargin: 8
-    readonly property int workspaceCount: 5
-    readonly property int panelExpandedHeight: 700
 
-    // -- Screenshot Directory -- \\
+    // -- Screenshot Directory -- //
     readonly property var screenshots: ({
         saveDirectory: "$HOME/Pictures/Screenshots"
     })
-    // -- Battery -- //
+    // -- Battery -- \\
     readonly property var battery: ({
         showPercentage: true
     })
 
-    // -- Notifications -- \\
+    // -- Notifications -- //
     readonly property var notifications: ({
         toastDefaultDuration: 5.0,
         toastLowDuration: 3.0,
@@ -65,13 +58,13 @@ Singleton {
         dashboardDismissTimeoutHours: 1
     })
 
-    // -- qBittorrent WebUI -- //
+    // -- qBittorrent WebUI -- \\
     readonly property var qbt: ({
         host: "http://localhost:8080",
         user: "admin",
         password: "W2ut$rlq3txKkM" // pass is stored in plain text idrc
     })
 
-    // -- VPN -- \\
+    // -- VPN -- //
     readonly property var vpn: ({ country: "CH" })
 }

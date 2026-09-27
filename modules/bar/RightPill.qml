@@ -5,27 +5,31 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    width: 90
+    width: batteryText.implicitWidth + 40
     height: 40
     radius: height
     color: ThemeService.mdSurface
 
-    Text {
-        id: batteryText
-        anchors.centerIn: parent
-        text: UPower.displayDevice.ready ? `${Math.round(UPower.displayDevice.percentage * 100)}%` : "0%"
-        
-        color: ThemeService.mdOnSurface
-        font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+    Item {
+        anchors.fill: parent
 
-        Behavior on color {
-            ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+        Text {
+            id: batteryText
+            anchors.centerIn: parent
+            text: UPower.displayDevice.ready ? `${Math.round(UPower.displayDevice.percentage * 100)}%` : "0%"
+
+            color: ThemeService.mdOnSurface
+            font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+
+            Behavior on color {
+                ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+            }
         }
-    }
 
-    HoverHandler {  
-        id: batteryHover 
-        cursorShape: Qt.PointingHandCursor    
+        HoverHandler {
+            id: batteryHover
+            cursorShape: Qt.PointingHandCursor
+        }
+        TapHandler { id: batteryTap }
     }
-    TapHandler { id: batteryTap }
 }
