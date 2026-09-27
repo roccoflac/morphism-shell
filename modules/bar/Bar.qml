@@ -10,14 +10,20 @@ PanelWindow {
     // exclusiveZone: 40
     color: "transparent"
 
+    LeftPill {
+        anchors {
+            left: parent.left
+            leftMargin: 10
+        }
+    }
     CenterPill {
         anchors { horizontalCenter: parent.horizontalCenter }
     }
 
     RightPill {
-        anchors { 
+        anchors {
             right: parent.right
-            rightMargin: 10 
+            rightMargin: 10
         }
     }
 }
