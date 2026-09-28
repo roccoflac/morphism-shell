@@ -15,6 +15,7 @@ Rectangle {
     Behavior on color {
         ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
+
     Item {
         anchors.fill: parent
 
