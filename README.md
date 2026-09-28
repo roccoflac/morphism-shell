@@ -1,13 +1,9 @@
-Morphism-shell
+# Morphism-shell
+A dynamic and fluid quickshell configuration inspired by Material Design
 
+## Installation:
+Ensure Quickshell is installed on your system
+````git clone https://github.com/roccoflac/morphism-shell````
+Move the cloned folder to $HOME/.config/quickshell
 
-Architecture Overview:
-ThemeService is written directly by a Matugen template, this avoids having to use file watchers and reduces complexity, don't edit this file directly, edit the Matugen template
-
-
-
-TODO:
-figure out the panel window situation for increasing the height of centerpill
-you cant dynamically resize panelwindow cleanly, so maybe have a high height panel window but mask it so it doesnt block clicks?
-
-make clock a semi dynamic island displaying notifications
+##

@@ -3,20 +3,21 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 import "../../services"
+import "../../"
 
 PanelWindow {
     id: root
     anchors { top: true; left: true; right: true }
     margins { top: 10 }
     implicitHeight: 400
-    exclusiveZone: 40
+    exclusiveZone: Config.barHeight
     color: "transparent"
 
     LeftPill {
         id: leftPill
         anchors {
             left: parent.left
-            leftMargin: 10
+            leftMargin: Config.barSideMargin
         }
     }
 
@@ -29,7 +30,7 @@ PanelWindow {
         id: rightPill
         anchors {
             right: parent.right
-            rightMargin: 10
+            rightMargin: Config.barSideMargin
         }
     }
     mask: Region {
@@ -41,9 +42,10 @@ PanelWindow {
     HyprlandFocusGrab {
         id: grab
         windows: [root]
-        active: leftPill.notiExpanded //|| rightPill.expanded
+        active: leftPill.notiExpanded || rightPill.batteryExpanded
         onCleared: {
             leftPill.notiExpanded = false
+            rightPill.batteryExpanded = false
         }
     }
 }

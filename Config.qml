@@ -41,6 +41,7 @@ Singleton {
 
     // -- Bar Config -- \\
     readonly property int barSideMargin: 10
+    readonly property int barHeight: 40
 
     // -- Screenshot Directory -- //
     readonly property var screenshots: ({

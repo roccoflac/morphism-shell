@@ -5,25 +5,45 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    width: batteryText.implicitWidth + 40
-    height: root.exclusiveZone
-    radius: Math.min(width, height) / 2
+    width: batteryExpanded ? 260 : batteryText.implicitWidth + 40
+    height: batteryExpanded ? 400 : Config.barHeight
+    radius: batteryExpanded ? Config.radiusLg : Config.barHeight / 2
     color: batteryHover.hovered
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
            : ThemeService.mdSurface
+    clip: true
 
+    Behavior on width {
+        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
+    Behavior on height {
+        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
+    Behavior on radius {
+        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
     Behavior on color {
         ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
 
+    property bool batteryExpanded: false
+
     Item {
         anchors.fill: parent
+        opacity: batteryExpanded ? 0 : 1
+        visible: opacity > 0
+
+        Behavior on opacity {
+            NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
+        }
 
         HoverHandler {
             id: batteryHover
             cursorShape: Qt.PointingHandCursor
         }
-        TapHandler { id: batteryTap }
+        TapHandler {
+            onTapped: batteryExpanded = !batteryExpanded
+        }
 
         Text {
             id: batteryText

@@ -5,8 +5,8 @@ import "../../"
 
 Rectangle {
     width: notiExpanded ? 320 : 40
-    height: notiExpanded ? 400 : 40
-    radius: notiExpanded ? Config.radiusLg : 20
+    height: notiExpanded ? 400 : Config.barHeight
+    radius: notiExpanded ? Config.radiusLg: 20 // considered Math.min(width, height) / 2 so its guarenteed to be max radius but its a messy animation
     color: notiHover.hovered
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
            : ThemeService.mdSurface
@@ -50,8 +50,8 @@ Rectangle {
             id: notiIcon
             anchors.centerIn: parent
             text: "\uf0f3" // fa-bell
-            color: ThemeService.mdPrimary
             font { pixelSize: Config.type2xl }
+            color: ThemeService.mdPrimary
             transformOrigin: Item.Top
 
             SequentialAnimation {
