@@ -30,7 +30,7 @@ Singleton {
     readonly property int radiusInf: 999
 
     // -- Animations -- //
-    //readonly property
+    readonly property int animVeryFast: 75
     readonly property int animFast: 120
     readonly property int animNormal: 180
     readonly property int animSlow: 265
@@ -40,6 +40,7 @@ Singleton {
     readonly property int easeExit: Easing.InCubic
 
     // -- Bar Config -- \\
+    readonly property int barSideMargin: 10
 
     // -- Screenshot Directory -- //
     readonly property var screenshots: ({

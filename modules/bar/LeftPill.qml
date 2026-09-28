@@ -4,30 +4,46 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    width: 40
-    height: width
-    radius: width
+    width: notiExpanded ? 320 : 40
+    height: notiExpanded ? 400 : 40
+    radius: notiExpanded ? Config.radiusLg : 20
     color: notiHover.hovered
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
            : ThemeService.mdSurface
     clip: true
 
+    Behavior on width {
+        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
+    Behavior on height {
+        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
+    Behavior on radius {
+        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
     Behavior on color {
         ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
 
+    property bool notiExpanded: false
+
     Item {
         anchors.fill: parent
+        opacity: notiExpanded ? 0 : 1
+        visible: opacity > 0
+
+        Behavior on opacity {
+            NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
+        }
 
         HoverHandler {
             id: notiHover
-            enabled: !expanded
             cursorShape: Qt.PointingHandCursor
             onHoveredChanged: if (hovered) notiAnimation.start() // maybe make this happen on notification received instead of hover?
         }
 
         TapHandler {
-            onTapped: notiExpanded = !noitExpanded
+            onTapped: notiExpanded = !notiExpanded
         }
 
         Text {
@@ -35,7 +51,7 @@ Rectangle {
             anchors.centerIn: parent
             text: "\uf0f3" // fa-bell
             color: ThemeService.mdPrimary
-            font { family: Config.fontIcons; pixelSize: Config.type2xl }
+            font { pixelSize: Config.type2xl }
             transformOrigin: Item.Top
 
             SequentialAnimation {
@@ -49,4 +65,6 @@ Rectangle {
             }
         }
     }
+
+    // loader to content item here so it doesnt eat up resources 24/7
 }

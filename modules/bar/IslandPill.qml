@@ -6,8 +6,8 @@ import "../../"
 
 Rectangle {
     implicitWidth: clockText.implicitWidth + 40
-    height: 40
-    radius: height
+    height: root.exclusiveZone
+    radius: Math.min(width, height) / 2
     color: clockHover.hovered
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
            : ThemeService.mdSurface

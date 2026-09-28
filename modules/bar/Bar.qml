@@ -1,9 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
 import "../../services"
 
 PanelWindow {
+    id: root
     anchors { top: true; left: true; right: true }
     margins { top: 10 }
     implicitHeight: 400
@@ -34,5 +36,14 @@ PanelWindow {
         Region { item: leftPill }
         Region { item: islandPill }
         Region { item: rightPill }
+    }
+
+    HyprlandFocusGrab {
+        id: grab
+        windows: [root]
+        active: leftPill.notiExpanded //|| rightPill.expanded
+        onCleared: {
+            leftPill.notiExpanded = false
+        }
     }
 }
