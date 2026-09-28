@@ -8,15 +8,27 @@ Rectangle {
     width: batteryText.implicitWidth + 40
     height: 40
     radius: height
-    color: ThemeService.mdSurface
+    color: batteryHover.hovered
+           ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
+           : ThemeService.mdSurface
 
+    Behavior on color {
+        ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
     Item {
         anchors.fill: parent
+
+        HoverHandler {
+            id: batteryHover
+            cursorShape: Qt.PointingHandCursor
+        }
+        TapHandler { id: batteryTap }
 
         Text {
             id: batteryText
             anchors.centerIn: parent
             text: UPower.displayDevice.ready ? `${Math.round(UPower.displayDevice.percentage * 100)}%` : "0%"
+            font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
 
             color: {
                 if (!UPower.displayDevice.ready) return ThemeService.mdOnSurface;
@@ -32,17 +44,10 @@ Rectangle {
 
                 return ThemeService.mdOnSurface;
             }
-            font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
 
             Behavior on color {
                 ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
             }
         }
-
-        HoverHandler {
-            id: batteryHover
-            cursorShape: Qt.PointingHandCursor
-        }
-        TapHandler { id: batteryTap }
     }
 }

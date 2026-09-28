@@ -13,11 +13,14 @@ Rectangle {
            : ThemeService.mdSurface
 
     Behavior on color {
-        ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+        ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
     Behavior on implicitWidth {
-        NumberAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
+
+    HoverHandler { id: clockHover }
+    TapHandler { id: clockTap }
 
     SystemClock {
         id: clock
@@ -36,6 +39,4 @@ Rectangle {
         }
     }
 
-    HoverHandler { id: clockHover }
-    TapHandler { id: clockTap }
 }

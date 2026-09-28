@@ -1,3 +1,5 @@
+// very wip
+
 import QtQuick
 import QtQuick.Controls
 import Quickshell
@@ -16,11 +18,11 @@ FloatingWindow {
 
         Rectangle {
             id: settingsBar
-            anchors { 
+            anchors {
                 top: parent.top; bottom: parent.bottom; left: parent.left
                 leftMargin: 10; topMargin: 10; bottomMargin: 10
             }
-            width: 160
+            width: 140
             color: ThemeService.mdSurfaceContainerLow
             radius: Config.radiusXl
 
@@ -28,6 +30,13 @@ FloatingWindow {
                 id: settingsTabsColumn
                 anchors { fill: parent; margins: 10 }
                 spacing: 10
+
+                Text {
+                    text: "\uf313"
+                    color: ThemeService.mdPrimary
+                    font { pixelSize: Config.type3xl}
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
 
                 SettingsTabButton {
                     title: "General"
@@ -40,8 +49,8 @@ FloatingWindow {
         }
         Rectangle {
             id: settingsContent
-            anchors { 
-                top: parent.top; bottom: parent.bottom; left: settingsBar.right; right: parent.right 
+            anchors {
+                top: parent.top; bottom: parent.bottom; left: settingsBar.right; right: parent.right
                 margins: 10
             }
             color: ThemeService.mdSurfaceContainerLow
@@ -58,11 +67,14 @@ FloatingWindow {
         width: settingsTabsColumn.width
         height: 50
         radius: Config.radiusLg
-        color: tabButtonHover.hovered 
-           ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdSecondary, 0.08)) 
+        color: tabButtonHover.hovered
+           ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdSecondary, 0.08))
            : ThemeService.mdSurfaceContainer
 
-        HoverHandler { id: tabButtonHover }
+        HoverHandler {
+            id: tabButtonHover
+            cursorShape: Qt.PointingHandCursor
+        }
 
         Behavior on color {
             ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }

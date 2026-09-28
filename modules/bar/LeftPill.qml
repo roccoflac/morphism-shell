@@ -7,7 +7,13 @@ Rectangle {
     width: 40
     height: width
     radius: width
-    color: ThemeService.mdSurface
+    color: notiHover.hovered
+           ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
+           : ThemeService.mdSurface
+
+    Behavior on color {
+        ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
 
     HoverHandler {
         id: notiHover
@@ -19,13 +25,10 @@ Rectangle {
     Text {
         id: notiIcon
         anchors.centerIn: parent
-        text: "\uf0f3"
+        text: "\uf0f3" // fa-bell
         color: ThemeService.mdPrimary
+        font { family: Config.fontIcons; pixelSize: Config.type2xl }
         transformOrigin: Item.Top
-        font {
-            family: "Symbols Nerd Font"
-            pixelSize: Config.type2xl
-        }
 
         SequentialAnimation {
             id: notiAnimation

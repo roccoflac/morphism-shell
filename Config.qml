@@ -8,6 +8,7 @@ Singleton {
     // -- Fonts -- \\
     property string fontFamily: "Lexend"
     property string fontFamily2: "Figtree"
+    property string fontIcons: "Symbols Nerd Font"
 
     // -- Type Ramp -- //
     readonly property int typeXs: 8
@@ -32,7 +33,7 @@ Singleton {
     //readonly property
     readonly property int animFast: 120
     readonly property int animNormal: 180
-    readonly property int animSlow: 250
+    readonly property int animSlow: 265
     readonly property int animVerySlow: 400
 
     readonly property int easeEnter: Easing.OutCubic
@@ -50,13 +51,6 @@ Singleton {
     })
 
     // -- Notifications -- //
-    readonly property var notifications: ({
-        toastDefaultDuration: 5.0,
-        toastLowDuration: 3.0,
-        toastCriticalDuration: 10.0,
-        maxVisibleToasts: 5,
-        dashboardDismissTimeoutHours: 1
-    })
 
     // -- qBittorrent WebUI -- \\
     readonly property var qbt: ({
