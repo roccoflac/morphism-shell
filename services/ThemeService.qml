@@ -7,7 +7,7 @@ Singleton {
 
     readonly property color mdBackground: "#0d1418"
     readonly property color mdOnBackground: "#dce3e9"
-    
+
     readonly property color mdPrimary: "#dec663"
     readonly property color mdOnPrimary: "#3a3000"
     readonly property color mdPrimaryContainer: "#544600"
@@ -50,4 +50,8 @@ Singleton {
     readonly property color mdInverseSurface: "#dce3e9"
     readonly property color mdInverseOnSurface: "#2a3136"
     readonly property color mdInversePrimary: "#6f5d00"
+
+    // hard coded tokens used for battery
+	readonly property color mdWarning: "#FFD1A9"
+	readonly property color mdCharging: "#2ECC71"
 }
