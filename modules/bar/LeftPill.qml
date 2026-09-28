@@ -26,6 +26,10 @@ Rectangle {
             onHoveredChanged: if (hovered) notiAnimation.start() // maybe make this happen on notification received instead of hover?
         }
 
+        TapHandler {
+            onTapped: notiExpanded = !noitExpanded
+        }
+
         Text {
             id: notiIcon
             anchors.centerIn: parent
