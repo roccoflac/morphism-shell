@@ -66,5 +66,7 @@ Rectangle {
         }
     }
 
-    // loader to content item here so it doesnt eat up resources 24/7
+    // Loader {
+
+    // }
 }

@@ -42,9 +42,10 @@ PanelWindow {
     HyprlandFocusGrab {
         id: grab
         windows: [root]
-        active: leftPill.notiExpanded || rightPill.batteryExpanded
+        active: leftPill.notiExpanded || islandPill.islandExpanded || rightPill.batteryExpanded
         onCleared: {
             leftPill.notiExpanded = false
+            islandPill.islandExpanded = false
             rightPill.batteryExpanded = false
         }
     }
