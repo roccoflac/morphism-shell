@@ -44,7 +44,10 @@ Singleton {
 
     readonly property color mdOutline: "#85939b"
     readonly property color mdOutlineVariant: "#3c4950"
-
+    
+    readonly property color mdSubtleOutline: "#85939b33"
+    readonly property color mdSubtleOutlineVariant: "#3c495033"
+	
     readonly property color mdShadow: "#000000"
     readonly property color mdScrim: "#000000"
     readonly property color mdInverseSurface: "#dce3e9"
@@ -55,11 +58,3 @@ Singleton {
 	readonly property color mdWarning: "#FFD1A9"
 	readonly property color mdCharging: "#2ECC71"
 }
-
-
-
-
-
-
-
-

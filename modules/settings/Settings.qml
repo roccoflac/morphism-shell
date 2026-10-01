@@ -14,7 +14,7 @@ FloatingWindow {
 
     Rectangle {
         anchors { fill: parent }
-        color: ThemeService.mdSurface
+        color: ThemeService.mdSurfaceContainerLowest
 
         Rectangle {
             id: settingsBar
@@ -34,7 +34,7 @@ FloatingWindow {
                 Text {
                     text: "\uf313"
                     color: ThemeService.mdPrimary
-                    font { pixelSize: Config.type3xl}
+                    font { pixelSize: Config.type4xl}
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
 
@@ -68,9 +68,9 @@ FloatingWindow {
         height: 50
         radius: Config.radiusLg
         color: tabButtonHover.hovered
-           ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdSecondary, 0.08))
+           ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdPrimary, 0.08))
            : ThemeService.mdSurfaceContainer
-
+        border { width: 1; color: ThemeService.mdSubtleOutlineVariant }
         HoverHandler {
             id: tabButtonHover
             cursorShape: Qt.PointingHandCursor
