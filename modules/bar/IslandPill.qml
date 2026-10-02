@@ -5,7 +5,7 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    implicitWidth: islandExpanded ? 500 : clockText.implicitWidth + 40
+    implicitWidth: islandExpanded ? 500 : idleRow.implicitWidth + 40
     height: islandExpanded ? 300 : Config.barHeight
     radius: Config.barHeight / 2
     color: clockHover.hovered
@@ -47,16 +47,29 @@ Rectangle {
             precision: SystemClock.Minutes
         }
 
-        Text {
-            id: clockText
+        // row for future icons etc
+        Row {
+            id: idleRow
             anchors { centerIn: parent }
-            text: clockHover.hovered ? Qt.formatDateTime(clock.date, "ddd, MMM d") : Qt.formatDateTime(clock.date, "hh:mm ap") // idk if i want to do "ap" or "AP"
-            color: ThemeService.mdOnSurface
-            font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
 
-            Behavior on color {
-                ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+            Text {
+                id: clockText
+                anchors { verticalCenter: parent.verticalCenter }
+                text: clockHover.hovered ? Qt.formatDateTime(clock.date, "ddd, MMM d") : Qt.formatDateTime(clock.date, "hh:mm ap") // idk if i want to do "ap" or "AP"
+                color: ThemeService.mdOnSurface
+                font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+
+                Behavior on color {
+                    ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+                }
             }
+            // Rectangle {
+            //     anchors { verticalCenter: parent.verticalCenter }
+            //     width: 33
+            //     height: 33
+            //     radius: 1.5
+            //     color: ThemeService.mdPrimary
+            // }
         }
     }
 }

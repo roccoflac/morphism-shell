@@ -5,7 +5,7 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    width: batteryExpanded ? 260 : batteryText.implicitWidth + 40
+    width: batteryExpanded ? 300 : batteryText.implicitWidth + 40
     height: batteryExpanded ? 400 : Config.barHeight
     radius: batteryExpanded ? Config.radiusLg : Config.barHeight / 2
     color: batteryHover.hovered
