@@ -36,6 +36,8 @@ FloatingWindow {
                     color: ThemeService.mdPrimary
                     font { pixelSize: Config.type4xl}
                     anchors.horizontalCenter: parent.horizontalCenter
+
+                    HoverHandler { cursorShape: Qt.PointingHandCursor }
                 }
 
                 SettingsTabButton {
@@ -71,6 +73,7 @@ FloatingWindow {
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdPrimary, 0.08))
            : ThemeService.mdSurfaceContainer
         border { width: 1; color: ThemeService.mdSubtleOutlineVariant }
+
         HoverHandler {
             id: tabButtonHover
             cursorShape: Qt.PointingHandCursor
@@ -79,15 +82,12 @@ FloatingWindow {
         Behavior on color {
             ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
         }
+
         Text {
             anchors.centerIn: parent
             text: settingsTabButton.title
             color: ThemeService.mdOnSurface
             font { pixelSize: Config.typeXl; family: Config.fontFamily2; weight: 500}
-
-            // Behavior on color {
-            //     ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
-            // }
         }
     }
 }

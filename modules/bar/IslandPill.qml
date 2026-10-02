@@ -55,7 +55,7 @@ Rectangle {
             Text {
                 id: clockText
                 anchors { verticalCenter: parent.verticalCenter }
-                text: clockHover.hovered ? Qt.formatDateTime(clock.date, "ddd, MMM d") : Qt.formatDateTime(clock.date, "hh:mm ap") // idk if i want to do "ap" or "AP"
+                text: clockHover.hovered ? Qt.formatDateTime(clock.date, "ddd, MMM d") : Qt.formatDateTime(clock.date, "hh:mm ap")
                 color: ThemeService.mdOnSurface
                 font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
 
