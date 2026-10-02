@@ -6,7 +6,7 @@ import "../../"
 Rectangle {
     width: notiExpanded ? 320 : 40
     height: notiExpanded ? 400 : Config.barHeight
-    radius: notiExpanded ? Config.radiusLg: 20 // considered Math.min(width, height) / 2 so its guarenteed to be max radius but its a messy animation
+    radius: notiExpanded ? Config.radiusLg : 20 // considered Math.min(width, height) / 2 so its guarenteed to be max radius but its a messy animation
     color: notiHover.hovered
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
            : ThemeService.mdSurface

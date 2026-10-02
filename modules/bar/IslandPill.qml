@@ -27,9 +27,11 @@ Rectangle {
     }
 
     property bool islandExpanded: false
+    required property var notificationData
 
     // non expanded state
     Item {
+        id: idleState
         anchors.fill: parent
 
         opacity: islandExpanded ? 0 : 1
@@ -72,4 +74,41 @@ Rectangle {
             // }
         }
     }
+
+    // noti state
+    // Item {
+    //     id: notiState
+    //     anchors.fill: parent
+
+    //     opacity: islandExpanded ? 0 : 1
+    //     visible: opacity > 0
+
+    //     Behavior on opacity {
+    //         NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
+    //     }
+
+    //     HoverHandler { id: notiHover }
+    //     TapHandler { id: notiTap; onTapped: islandExpanded = !islandExpanded}
+
+    //     // row for future icons etc
+    //     Row {
+    //         id: notiRow
+    //         anchors { centerIn: parent }
+
+    //         Text {
+    //             id: notiText
+    //             anchors { verticalCenter: parent.verticalCenter }
+
+    //             text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
+
+    //             // Optional: Hide the text completely if there are no notifications so it doesn't take space in your Row
+    //             visible: text !== ""
+
+    //             color: ThemeService.mdOnSurface
+    //             font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+
+    //             Behavior on color { ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter } }
+    //         }
+    //     }
+    // }
 }

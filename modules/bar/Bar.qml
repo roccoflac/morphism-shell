@@ -8,7 +8,7 @@ import "../../"
 PanelWindow {
     id: root
     anchors { top: true; left: true; right: true }
-    margins { top: 10 }
+    margins { top: 10 } // consider doing side margins here instead of on the pills?
     implicitHeight: 400
     exclusiveZone: Config.barHeight
     color: "transparent"
