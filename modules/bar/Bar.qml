@@ -13,12 +13,20 @@ PanelWindow {
     exclusiveZone: Config.barHeight
     color: "transparent"
 
-    NotiPill {
-        id: notiPill
+    Row {
         anchors {
             left: parent.left
             leftMargin: Config.barSideMargin
         }
+        spacing: 10
+
+        NotiPill {
+            id: notiPill
+        }
+        // WIP
+        // WorkspacePill {
+        //     id: workspacePill
+        // }
     }
 
     IslandPill {
