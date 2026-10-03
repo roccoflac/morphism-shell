@@ -4,24 +4,28 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    width: 100
+    width: workspaceRow.implicitWidth + 40
     height: Config.barHeight
     radius: Math.min(width, height) / 2
     color: ThemeService.mdSurface
-    clip: true
 
     Row {
+        id: workspaceRow
         anchors.centerIn: parent
-        spacing: 4
+        spacing: 5
 
         Repeater {
             model: 5
 
             Rectangle {
-                width: 10
+                id: workspaceDot
+                width: 15
                 height: width
                 radius: Math.min(width, height) / 2
                 color: ThemeService.mdTertiary
+                scale: workspaceHover.hovered ? 1.56 : 1.0
+
+                HoverHandler { id: workspaceHover; cursorShape: Qt.PointingHandCursor }
             }
         }
     }

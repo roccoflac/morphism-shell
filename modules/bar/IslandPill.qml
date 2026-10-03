@@ -17,6 +17,7 @@ Rectangle {
     property bool notiReceived: NotificationService.currentNotification !== null
     property bool islandExpanded: false
     required property var notificationData
+    // readonly property int expandedHeight: 500 // do this some other time
 
     Behavior on implicitWidth {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
