@@ -11,8 +11,6 @@ Move the cloned folder to $HOME/.config/quickshell
 
 to do:
 - make clicking notification show full notification and pause the dismiss (timer doesnt have a way to pause natively so i need to figure that out)\
-- fix workspace pill hoverhandler not working for some reaosn\
-- add functionality to workspace pill\
 - add audio and network buttons\
 - fix weird animations with content loader
 

@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Hyprland
 import "../../services"
 import "../../"
 
@@ -18,14 +19,30 @@ Rectangle {
             model: 5
 
             Rectangle {
-                id: workspaceDot
+                required property int index
+                readonly property int wsId: index + 1
+                readonly property bool isActive: Hyprland.focusedWorkspace?.id === wsId
+                readonly property bool hasWindows: Hyprland.workspaces.values.some(ws => ws.id === wsId)
+
                 width: 15
                 height: width
                 radius: Math.min(width, height) / 2
-                color: ThemeService.mdTertiary
-                scale: workspaceHover.hovered ? 1.56 : 1.0
+                color: isActive
+                        ? ThemeService.mdPrimary
+                        : hasWindows
+                            ? ThemeService.mdTertiary
+                            : Qt.alpha(ThemeService.mdTertiary, 0.5)
+                scale: workspacePress.pressed ? 1 : (workspaceHover.hovered ? 1.06 : 1.0)
 
-                HoverHandler { id: workspaceHover; cursorShape: Qt.PointingHandCursor }
+                Behavior on scale {
+                    NumberAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+                }
+                Behavior on color {
+                    ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+                }
+
+                HoverHandler { id: workspaceHover }
+                TapHandler { id: workspacePress; onTapped: Hyprland.dispatch('hl.dsp.focus({ workspace = "' + wsId + '" })') }
             }
         }
     }

@@ -24,9 +24,9 @@ PanelWindow {
             id: notiPill
         }
         // WIP
-        // WorkspacePill {
-        //     id: workspacePill
-        // }
+        WorkspacePill {
+            id: workspacePill
+        }
     }
 
     IslandPill {
@@ -45,6 +45,7 @@ PanelWindow {
         Region { item: notiPill }
         Region { item: islandPill }
         Region { item: powerPill }
+        Region { item: workspacePill }
     }
 
     HyprlandFocusGrab {
