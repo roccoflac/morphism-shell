@@ -13,8 +13,8 @@ PanelWindow {
     exclusiveZone: Config.barHeight
     color: "transparent"
 
-    LeftPill {
-        id: leftPill
+    NotiPill {
+        id: notiPill
         anchors {
             left: parent.left
             leftMargin: Config.barSideMargin
@@ -26,27 +26,27 @@ PanelWindow {
         anchors { horizontalCenter: parent.horizontalCenter }
     }
 
-    RightPill {
-        id: rightPill
+    PowerPill {
+        id: powerPill
         anchors {
             right: parent.right
             rightMargin: Config.barSideMargin
         }
     }
     mask: Region {
-        Region { item: leftPill }
+        Region { item: notiPill }
         Region { item: islandPill }
-        Region { item: rightPill }
+        Region { item: powerPill }
     }
 
     HyprlandFocusGrab {
         id: grab
         windows: [root]
-        active: leftPill.notiExpanded || islandPill.islandExpanded || rightPill.batteryExpanded
+        active: notiPill.notiExpanded || islandPill.islandExpanded || powerPill.batteryExpanded
         onCleared: {
-            leftPill.notiExpanded = false
+            notiPill.notiExpanded = false
             islandPill.islandExpanded = false
-            rightPill.batteryExpanded = false
+            powerPill.batteryExpanded = false
         }
     }
 }

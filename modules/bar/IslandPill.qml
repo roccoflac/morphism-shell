@@ -61,8 +61,8 @@ Rectangle {
                 implicitWidth: 500
                 implicitHeight: 300
             }
-            PropertyChanges { target: idleItem; opacity: 0; visible: false }
-            PropertyChanges { target: notiItem; opacity: 0; visible: false }
+            PropertyChanges { target: idleItem; opacity: 0 }
+            PropertyChanges { target: notiItem; opacity: 0 }
         }
     ]
 
