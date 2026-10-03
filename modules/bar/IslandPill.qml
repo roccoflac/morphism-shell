@@ -9,12 +9,12 @@ Rectangle {
     implicitWidth: idleRow.implicitWidth + 40
     implicitHeight: Config.barHeight
     radius: Config.barHeight / 2
-    color: clockHover.hovered
+    color: (clockHover.hovered || notiHover.hovered)
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
            : ThemeService.mdSurface
     clip: true
 
-    property bool notiReceived: NotificationService.hasActiveNotification
+    property bool notiReceived: NotificationService.currentNotification !== null
     property bool islandExpanded: false
     required property var notificationData
 
@@ -66,7 +66,6 @@ Rectangle {
         }
     ]
 
-    // non expanded state
     Item {
         id: idleItem
         anchors.fill: parent
@@ -91,7 +90,6 @@ Rectangle {
             anchors { centerIn: parent }
 
             Text {
-                id: clockText
                 anchors { verticalCenter: parent.verticalCenter }
                 text: clockHover.hovered ? Qt.formatDateTime(clock.date, "ddd, MMM d") : Qt.formatDateTime(clock.date, "hh:mm ap")
                 color: ThemeService.mdOnSurface
@@ -100,7 +98,6 @@ Rectangle {
         }
     }
 
-    // noti state (WIP)
     Item {
         id: notiItem
         anchors.fill: parent
@@ -120,7 +117,6 @@ Rectangle {
             anchors { centerIn: parent }
 
             Text {
-                id: notiText
                 anchors { verticalCenter: parent.verticalCenter }
                 text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
                 font { pixelSize: Config.typeXl; family: Config.fontFamily2 }

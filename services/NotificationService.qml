@@ -8,7 +8,6 @@ Singleton {
 
     property alias notifications: server.trackedNotifications
     property var currentNotification: null
-    property bool hasActiveNotification: false
 
     NotificationServer {
         id: server
@@ -17,7 +16,6 @@ Singleton {
         onNotification: (notification) => {
             notification.tracked = true;
             root.currentNotification = notification;
-            root.hasActiveNotification = true;
             dismissTimer.restart();
 
             console.log("New Notification from:", notification.appName, "-", notification.summary);
@@ -28,8 +26,9 @@ Singleton {
         id: dismissTimer
         interval: 3000
         repeat: false
+        running: false
         onTriggered: {
-            root.hasActiveNotification = false;
+            root.currentNotification = null;
         }
     }
 }
