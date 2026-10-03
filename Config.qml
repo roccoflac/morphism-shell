@@ -8,7 +8,6 @@ Singleton {
     // -- Fonts -- \\
     property string fontFamily: "Lexend"
     property string fontFamily2: "Figtree"
-    property string fontIcons: "Symbols Nerd Font"
 
     // -- Type Ramp -- //
     readonly property int typeXs: 8
