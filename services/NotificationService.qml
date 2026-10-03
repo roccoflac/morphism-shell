@@ -1,5 +1,5 @@
 pragma Singleton
-import QtQuick // Required for Timer
+import QtQuick
 import Quickshell
 import Quickshell.Services.Notifications
 
