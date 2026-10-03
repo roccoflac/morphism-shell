@@ -5,18 +5,23 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    implicitWidth: islandExpanded ? 500 : idleRow.implicitWidth + 40
-    height: islandExpanded ? 300 : Config.barHeight
+    id: root
+    implicitWidth: idleRow.implicitWidth + 40
+    implicitHeight: Config.barHeight
     radius: Config.barHeight / 2
     color: clockHover.hovered
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
            : ThemeService.mdSurface
     clip: true
 
+    property bool notiReceived: NotificationService.hasActiveNotification
+    property bool islandExpanded: false
+    required property var notificationData
+
     Behavior on implicitWidth {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
-    Behavior on height {
+    Behavior on implicitHeight {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
     Behavior on radius {
@@ -26,15 +31,47 @@ Rectangle {
         ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
 
-    property bool islandExpanded: false
-    required property var notificationData
+    states: [
+        State {
+            name: "notiState"
+            when: root.notiReceived && !root.islandExpanded
+
+            PropertyChanges {
+                target: root
+                implicitWidth: notiRow.implicitWidth + 40
+            }
+
+            PropertyChanges {
+                target: idleItem
+                opacity: 0
+            }
+
+            PropertyChanges {
+                target: notiItem
+                opacity: 1
+            }
+        },
+
+        State {
+            name: "expandedState"
+            when: root.islandExpanded
+
+            PropertyChanges {
+                target: root
+                implicitWidth: 500
+                implicitHeight: 300
+            }
+            PropertyChanges { target: idleItem; opacity: 0; visible: false }
+            PropertyChanges { target: notiItem; opacity: 0; visible: false }
+        }
+    ]
 
     // non expanded state
     Item {
-        id: idleState
+        id: idleItem
         anchors.fill: parent
 
-        opacity: islandExpanded ? 0 : 1
+        opacity: 1
         visible: opacity > 0
 
         Behavior on opacity {
@@ -49,7 +86,6 @@ Rectangle {
             precision: SystemClock.Minutes
         }
 
-        // row for future icons etc
         Row {
             id: idleRow
             anchors { centerIn: parent }
@@ -60,55 +96,36 @@ Rectangle {
                 text: clockHover.hovered ? Qt.formatDateTime(clock.date, "ddd, MMM d") : Qt.formatDateTime(clock.date, "hh:mm ap")
                 color: ThemeService.mdOnSurface
                 font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
-
-                Behavior on color {
-                    ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
-                }
             }
-            // Rectangle {
-            //     anchors { verticalCenter: parent.verticalCenter }
-            //     width: 33
-            //     height: 33
-            //     radius: 1.5
-            //     color: ThemeService.mdPrimary
-            // }
         }
     }
 
-    // noti state
-    // Item {
-    //     id: notiState
-    //     anchors.fill: parent
+    // noti state (WIP)
+    Item {
+        id: notiItem
+        anchors.fill: parent
 
-    //     opacity: islandExpanded ? 0 : 1
-    //     visible: opacity > 0
+        opacity: 0
+        visible: opacity > 0
 
-    //     Behavior on opacity {
-    //         NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
-    //     }
+        Behavior on opacity {
+            NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
+        }
 
-    //     HoverHandler { id: notiHover }
-    //     TapHandler { id: notiTap; onTapped: islandExpanded = !islandExpanded}
+        HoverHandler { id: notiHover }
+        TapHandler { id: notiTap; onTapped: islandExpanded = !islandExpanded}
 
-    //     // row for future icons etc
-    //     Row {
-    //         id: notiRow
-    //         anchors { centerIn: parent }
+        Row {
+            id: notiRow
+            anchors { centerIn: parent }
 
-    //         Text {
-    //             id: notiText
-    //             anchors { verticalCenter: parent.verticalCenter }
-
-    //             text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
-
-    //             // Optional: Hide the text completely if there are no notifications so it doesn't take space in your Row
-    //             visible: text !== ""
-
-    //             color: ThemeService.mdOnSurface
-    //             font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
-
-    //             Behavior on color { ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter } }
-    //         }
-    //     }
-    // }
+            Text {
+                id: notiText
+                anchors { verticalCenter: parent.verticalCenter }
+                text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
+                font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+                color: ThemeService.mdOnSurface
+            }
+        }
+    }
 }
