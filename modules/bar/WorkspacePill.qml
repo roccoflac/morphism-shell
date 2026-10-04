@@ -16,7 +16,7 @@ Rectangle {
         spacing: 5
 
         Repeater {
-            model: 5
+            model: Config.workspaceAmount
 
             Rectangle {
                 required property int index

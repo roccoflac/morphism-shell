@@ -48,7 +48,7 @@ Rectangle {
         Text {
             id: batteryText
             anchors.centerIn: parent
-            text: UPower.displayDevice.ready ? `${Math.round(UPower.displayDevice.percentage * 100)}%` : "0%"
+            text: Config.showPercentage ? UPower.displayDevice.ready ? `${Math.round(UPower.displayDevice.percentage * 100)}%` : "0%" : "\uf011"
             font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
 
             color: {

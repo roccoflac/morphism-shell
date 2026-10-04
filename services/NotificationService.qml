@@ -2,6 +2,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Services.Notifications
+import "../"
 
 Singleton {
     id: root
@@ -24,7 +25,7 @@ Singleton {
 
     Timer {
         id: dismissTimer
-        interval: 3000
+        interval: Config.notificationNormalTimeout
         repeat: false
         running: false
         onTriggered: {

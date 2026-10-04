@@ -41,17 +41,19 @@ Singleton {
     // -- Bar Config -- \\
     readonly property int barSideMargin: 10
     readonly property int barHeight: 40
+    readonly property int workspaceAmount: 5
 
     // -- Screenshot Directory -- //
     readonly property var screenshots: ({
         saveDirectory: "$HOME/Pictures/Screenshots"
     })
     // -- Battery -- \\
-    readonly property var battery: ({
-        showPercentage: true
-    })
+    readonly property bool showPercentage: true
 
     // -- Notifications -- //
+    readonly property int notificationLowTimeout: 2000
+    readonly property int notificationNormalTimeout: 3000
+    readonly property int notificationCriticalTimeout: 5000
 
     // -- qBittorrent WebUI -- \\
     readonly property var qbt: ({
