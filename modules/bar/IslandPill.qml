@@ -36,11 +36,32 @@ Rectangle {
     states: [
         State {
             name: "notiState"
-            when: root.notiReceived && !root.islandExpanded
+            when: root.notiReceived && !root.islandExpanded &&!root.notiExpanded
 
             PropertyChanges {
                 target: root
                 implicitWidth: notiRow.implicitWidth + 40
+            }
+
+            PropertyChanges {
+                target: idleItem
+                opacity: 0
+            }
+
+            PropertyChanges {
+                target: notiItem
+                opacity: 1
+            }
+        },
+
+        State {
+            name: "notiExpandedState"
+            when: root.notiReceived && !root.islandExpanded && root.notiExpanded
+
+            PropertyChanges {
+                target: root
+                implicitWidth: notiRow.implicitWidth + 300
+                implicitHeight: 160
             }
 
             PropertyChanges {
@@ -114,7 +135,7 @@ Rectangle {
         HoverHandler { id: notiHover }
         TapHandler {
             id: notiTap;
-            onTapped: islandExpanded = !islandExpanded
+            onTapped: root.notiExpanded = !root.notiExpanded
         }
 
         TapHandler {
