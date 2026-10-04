@@ -16,6 +16,7 @@ Rectangle {
 
     property bool notiReceived: NotificationService.currentNotification !== null
     property bool islandExpanded: false
+    property bool notiExpanded: false
     required property var notificationData
     // readonly property int expandedHeight: 500 // do this some other time
 
@@ -111,7 +112,15 @@ Rectangle {
         }
 
         HoverHandler { id: notiHover }
-        TapHandler { id: notiTap; onTapped: islandExpanded = !islandExpanded}
+        TapHandler {
+            id: notiTap;
+            onTapped: islandExpanded = !islandExpanded
+        }
+
+        TapHandler {
+            acceptedButtons: Qt.RightButton
+            onTapped: NotificationService.currentNotification = null
+        }
 
         Row {
             id: notiRow

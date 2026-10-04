@@ -17,3 +17,5 @@ to do:
 features i want long term:
 - app launcher similar to caelestia where you can do stuff like >wallpaper >settings etc
 -
+
+figure out color generation, this shit currently SUCKS
