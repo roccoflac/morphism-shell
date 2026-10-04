@@ -6,8 +6,20 @@ import "../../"
 
 Rectangle {
     id: root
-    implicitWidth: idleRow.implicitWidth + 40
-    implicitHeight: Config.barHeight
+
+    implicitWidth: {
+        if (islandExpanded) return 500
+        if (activeNotification && notiExpanded) return notiRow.implicitWidth + 300
+        if (activeNotification) return notiRow.implicitWidth + 40
+        return idleRow.implicitWidth + 40
+    }
+
+    implicitHeight: {
+        if (islandExpanded) return 300
+        if (activeNotification && notiExpanded) return 160
+        return Config.barHeight
+    }
+
     radius: Config.barHeight / 2
     color: (clockHover.hovered || notiHover.hovered)
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
@@ -33,67 +45,11 @@ Rectangle {
         ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
 
-    states: [
-        State {
-            name: "notiState"
-            when: root.activeNotification && !root.islandExpanded && !root.notiExpanded
-
-            PropertyChanges {
-                target: root
-                implicitWidth: notiRow.implicitWidth + 40
-            }
-
-            PropertyChanges {
-                target: idleItem
-                opacity: 0
-            }
-
-            PropertyChanges {
-                target: notiItem
-                opacity: 1
-            }
-        },
-
-        State {
-            name: "notiExpandedState"
-            when: root.activeNotification && !root.islandExpanded && root.notiExpanded
-
-            PropertyChanges {
-                target: root
-                implicitWidth: notiRow.implicitWidth + 300
-                implicitHeight: 160
-            }
-
-            PropertyChanges {
-                target: idleItem
-                opacity: 0
-            }
-
-            PropertyChanges {
-                target: notiItem
-                opacity: 1
-            }
-        },
-
-        State {
-            name: "expandedState"
-            when: root.islandExpanded
-
-            PropertyChanges {
-                target: root
-                implicitWidth: 500
-                implicitHeight: 300
-            }
-            PropertyChanges { target: idleItem; opacity: 0 }
-            PropertyChanges { target: notiItem; opacity: 0 }
-        }
-    ]
-
     Item {
         id: idleItem
         anchors.fill: parent
 
-        opacity: 1
+        opacity: (!root.activeNotification && !root.islandExpanded) ? 1 : 0
         scale: opacity
         visible: opacity > 0
 
@@ -133,8 +89,9 @@ Rectangle {
     Item {
         id: notiItem
         anchors.fill: parent
+
+        opacity: (root.activeNotification && !root.islandExpanded) ? 1 : 0
         scale: opacity
-        opacity: 0
         visible: opacity > 0
 
         Behavior on scale {
