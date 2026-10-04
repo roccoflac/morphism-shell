@@ -30,8 +30,8 @@ Rectangle {
                 color: isActive
                         ? ThemeService.mdPrimary
                         : hasWindows
-                            ? ThemeService.mdTertiary
-                            : Qt.alpha(ThemeService.mdTertiary, 0.5)
+                            ? workspaceHover.hovered ? ThemeService.mdTertiary : (Qt.alpha(ThemeService.mdTertiary, 0.85))
+                            : workspaceHover.hovered ? Qt.alpha(ThemeService.mdTertiary, 0.75) : (Qt.alpha(ThemeService.mdTertiary, 0.5)) // i need to clean up this readability later
                 scale: workspacePress.pressed ? 1 : (workspaceHover.hovered ? 1.06 : 1.0)
 
                 Behavior on scale {
