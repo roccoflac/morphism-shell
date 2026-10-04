@@ -14,10 +14,10 @@ Rectangle {
            : ThemeService.mdSurface
     clip: true
 
-    property bool notiReceived: NotificationService.currentNotification !== null
+    property bool activeNotification: NotificationService.currentNotification !== null
     property bool islandExpanded: false
     property bool notiExpanded: false
-    required property var notificationData
+    // required property var notificationData
     // readonly property int expandedHeight: 500 // do this some other time
 
     Behavior on implicitWidth {
@@ -36,7 +36,7 @@ Rectangle {
     states: [
         State {
             name: "notiState"
-            when: root.notiReceived && !root.islandExpanded &&!root.notiExpanded
+            when: root.activeNotification && !root.islandExpanded && !root.notiExpanded
 
             PropertyChanges {
                 target: root
@@ -56,7 +56,7 @@ Rectangle {
 
         State {
             name: "notiExpandedState"
-            when: root.notiReceived && !root.islandExpanded && root.notiExpanded
+            when: root.activeNotification && !root.islandExpanded && root.notiExpanded
 
             PropertyChanges {
                 target: root
