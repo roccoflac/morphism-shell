@@ -94,7 +94,16 @@ Rectangle {
         anchors.fill: parent
 
         opacity: 1
+        scale: opacity
         visible: opacity > 0
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: Config.animSlow
+                easing.type: Easing.OutBack
+                easing.overshoot: 1
+            }
+        }
 
         Behavior on opacity {
             NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
@@ -124,9 +133,17 @@ Rectangle {
     Item {
         id: notiItem
         anchors.fill: parent
-
+        scale: opacity
         opacity: 0
         visible: opacity > 0
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: Config.animSlow
+                easing.type: Easing.OutBack
+                easing.overshoot: 1
+            }
+        }
 
         Behavior on opacity {
             NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }

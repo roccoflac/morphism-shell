@@ -30,7 +30,16 @@ Rectangle {
     Item {
         anchors.fill: parent
         opacity: notiExpanded ? 0 : 1
+        scale: opacity
         visible: opacity > 0
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: Config.animSlow
+                easing.type: Easing.OutBack
+                easing.overshoot: 1
+            }
+        }
 
         Behavior on opacity {
             NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
