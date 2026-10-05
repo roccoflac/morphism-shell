@@ -2,9 +2,13 @@
 A dynamic and fluid quickshell configuration inspired by Material Design
 
 ## Installation:
-Ensure Quickshell is installed on your system\
+Dependencies:
+- Quickshell
+- Matugen
+
+To install, clone the repository:
 ````git clone https://github.com/roccoflac/morphism-shell````\
-Move the cloned folder to $HOME/.config/quickshell
+then move the contents of the cloned folder to $HOME/.config/quickshell
 
 
 
