@@ -90,7 +90,7 @@ Rectangle {
         id: notiItem
         anchors.fill: parent
 
-        opacity: (root.activeNotification && !root.islandExpanded) ? 1 : 0
+        opacity: (root.activeNotification && !root.islandExpanded && !root.notiExpanded) ? 1 : 0
         scale: opacity
         visible: opacity > 0
 
@@ -124,31 +124,6 @@ Rectangle {
             }
             spacing: 10
 
-            Image {
-                id: notiImage
-                anchors.verticalCenter: parent.verticalCenter
-
-                source: NotificationService.currentNotification ? NotificationService.currentNotification.image : ""
-                height: 25
-                width: height
-                fillMode: Image.PreserveAspectFit
-                opacity: notiExpanded && source.toString() !== ""
-                visible: opacity > 0
-                scale: opacity
-
-                Behavior on scale {
-                    NumberAnimation {
-                        duration: Config.animSlow
-                        easing.type: Easing.OutBack
-                        easing.overshoot: 1
-                    }
-                }
-
-                Behavior on opacity {
-                    NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
-                }
-            }
-
             Text {
                 anchors { verticalCenter: parent.verticalCenter }
                 text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
@@ -156,7 +131,78 @@ Rectangle {
                 color: ThemeService.mdOnSurface
             }
         }
+    }
 
+    Item {
+        id: notiExpandedItem
+        anchors.fill: parent
 
+        opacity: (root.activeNotification && !root.islandExpanded && root.notiExpanded) ? 1 : 0
+        scale: opacity
+        visible: opacity > 0
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: Config.animNormal
+                easing.type: Easing.OutBack
+                easing.overshoot: 1
+            }
+        }
+
+        Behavior on opacity {
+            NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
+        }
+
+        HoverHandler { id: notiExpandedHover }
+        TapHandler {
+            id: notiExpandedTap;
+            onTapped: root.notiExpanded = !root.notiExpanded
+        }
+
+        TapHandler {
+            acceptedButtons: Qt.RightButton
+            onTapped: NotificationService.currentNotification = null
+        }
+
+        Column {
+            id: notiExpandColumn
+            anchors {
+                top: parent.top
+                left: parent.left
+                topMargin: 16
+                leftMargin: 16
+            }
+
+            Text {
+                id: dummyText
+                text: "1\n2"
+                font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+                visible: false
+            }
+
+            Row {
+                id: notiExpandRow
+                spacing: 10
+
+                Image {
+                    id: notiExpandImage
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    source: NotificationService.currentNotification ? NotificationService.currentNotification.image : ""
+                    height: dummyText.implicitHeight
+                    width: height
+                    fillMode: Image.PreserveAspectFit
+                    opacity: source.toString() !== ""
+                    visible: opacity > 0
+                }
+
+                Text {
+                    anchors { verticalCenter: parent.verticalCenter }
+                    text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
+                    font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+                    color: ThemeService.mdOnSurface
+                }
+            }
+        }
     }
 }
