@@ -26,7 +26,7 @@ Singleton {
 
     Timer {
         id: dismissTimer
-        interval: Config.notificationNormalTimeout
+        interval: Config.notificationNormalTimeout + 100000
         repeat: false
         running: false
         onTriggered: {

@@ -16,7 +16,7 @@ Rectangle {
 
     implicitHeight: {
         if (islandExpanded) return 300
-        if (activeNotification && notiExpanded) return 160
+        if (activeNotification && notiExpanded) return notiExpandColumn.implicitHeight + 40
         return Config.barHeight
     }
 
@@ -171,6 +171,7 @@ Rectangle {
                 horizontalCenter: parent.horizontalCenter
                 topMargin: 16
             }
+            spacing: 10
 
             Text { //
                 id: dummyText
@@ -196,11 +197,24 @@ Rectangle {
                 }
 
                 Text {
-                    anchors { verticalCenter: parent.verticalCenter }
+                    width: 500
                     text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
                     font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
                     color: ThemeService.mdOnSurface
+                    wrapMode: Text.WordWrap
+                    maximumLineCount: 2
+                    elide: Text.ElideRight
+                    // textFormat: Text.MarkdownText
                 }
+            }
+
+            Text {
+                width: 500 // this is the max width it can be
+                text: NotificationService.currentNotification ? NotificationService.currentNotification.body : ""
+                font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+                color: ThemeService.mdOnSurface
+                wrapMode: Text.WordWrap
+                // textFormat: Text.MarkdownText
             }
         }
     }
