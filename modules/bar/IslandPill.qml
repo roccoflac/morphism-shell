@@ -9,7 +9,7 @@ Rectangle {
 
     implicitWidth: {
         if (islandExpanded) return 500
-        if (activeNotification && notiExpanded) return notiRow.implicitWidth + 300
+        if (activeNotification && notiExpanded) return notiExpandColumn.implicitWidth + 40
         if (activeNotification) return notiRow.implicitWidth + 40
         return idleRow.implicitWidth + 40
     }
@@ -161,19 +161,18 @@ Rectangle {
 
         TapHandler {
             acceptedButtons: Qt.RightButton
-            onTapped: NotificationService.currentNotification = null
+            onTapped: NotificationService.currentNotification = null //
         }
 
         Column {
             id: notiExpandColumn
             anchors {
                 top: parent.top
-                left: parent.left
+                horizontalCenter: parent.horizontalCenter
                 topMargin: 16
-                leftMargin: 16
             }
 
-            Text {
+            Text { //
                 id: dummyText
                 text: "1\n2"
                 font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
