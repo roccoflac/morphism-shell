@@ -186,7 +186,7 @@ Rectangle {
 
                 Image {
                     id: notiExpandImage
-                    anchors.verticalCenter: parent.verticalCenter
+                    // anchors.verticalCenter: parent.verticalCenter
 
                     source: NotificationService.currentNotification ? NotificationService.currentNotification.image : ""
                     height: dummyText.implicitHeight
@@ -195,6 +195,18 @@ Rectangle {
                     opacity: source.toString() !== ""
                     visible: opacity > 0
                 }
+
+                // Image {
+                //     id: notiExpandIcon
+                //     anchors.verticalCenter: parent.verticalCenter
+
+                //     source: NotificationService.currentNotification.appIcon
+                //     height: dummyText.implicitHeight
+                //     width: height
+                //     fillMode: Image.PreserveAspectFit
+                //     opacity: source.toString() !== ""
+                //     visible: opacity > 0
+                // }
 
                 Text {
                     width: 500

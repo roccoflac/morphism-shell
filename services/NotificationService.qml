@@ -14,6 +14,7 @@ Singleton {
         id: server
         bodySupported: true
         imageSupported: true
+        keepOnReload: true // keeping it true while testing, put false later
 
         onNotification: (notification) => {
             notification.tracked = true;
