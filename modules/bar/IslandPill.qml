@@ -119,7 +119,35 @@ Rectangle {
 
         Row {
             id: notiRow
-            anchors { centerIn: parent }
+            anchors {
+                centerIn: parent
+            }
+            spacing: 10
+
+            Image {
+                id: notiImage
+                anchors.verticalCenter: parent.verticalCenter
+
+                source: NotificationService.currentNotification ? NotificationService.currentNotification.image : ""
+                height: 25
+                width: height
+                fillMode: Image.PreserveAspectFit
+                opacity: notiExpanded && source.toString() !== ""
+                visible: opacity > 0
+                scale: opacity
+
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: Config.animSlow
+                        easing.type: Easing.OutBack
+                        easing.overshoot: 1
+                    }
+                }
+
+                Behavior on opacity {
+                    NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
+                }
+            }
 
             Text {
                 anchors { verticalCenter: parent.verticalCenter }
@@ -128,5 +156,7 @@ Rectangle {
                 color: ThemeService.mdOnSurface
             }
         }
+
+
     }
 }
