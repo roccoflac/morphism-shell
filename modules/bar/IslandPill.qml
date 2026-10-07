@@ -145,7 +145,7 @@ Rectangle {
             NumberAnimation {
                 duration: Config.animNormal
                 easing.type: Easing.OutBack
-                easing.overshoot: 1
+                easing.overshoot: 0.5
             }
         }
 
@@ -161,7 +161,7 @@ Rectangle {
 
         TapHandler {
             acceptedButtons: Qt.RightButton
-            onTapped: NotificationService.currentNotification = null //
+            onTapped: NotificationService.currentNotification = null
         }
 
         Column {
@@ -186,7 +186,6 @@ Rectangle {
 
                 Image {
                     id: notiExpandImage
-                    // anchors.verticalCenter: parent.verticalCenter
 
                     source: NotificationService.currentNotification ? NotificationService.currentNotification.image : ""
                     height: dummyText.implicitHeight
@@ -216,17 +215,17 @@ Rectangle {
                     wrapMode: Text.WordWrap
                     maximumLineCount: 2
                     elide: Text.ElideRight
-                    // textFormat: Text.MarkdownText
+                    // textFormat: Text.PlainText
                 }
             }
-
+            // fix fucked up monospace font
             Text {
                 width: 500 // this is the max width it can be
                 text: NotificationService.currentNotification ? NotificationService.currentNotification.body : ""
                 font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
                 color: ThemeService.mdOnSurface
                 wrapMode: Text.WordWrap
-                // textFormat: Text.MarkdownText
+                // textFormat: Text.RichText
             }
         }
     }
