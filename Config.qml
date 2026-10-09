@@ -47,56 +47,56 @@ Singleton {
     }
 
     // -- Animation Curves \\
-    readonly property var emphasized: Easing.bezierCurve([0.2, 0.0, 0, 1.0])
-    readonly property var emphasizedDecelerate: Easing.bezierCurve([0.05, 0.7, 0.1, 1.0])
-    readonly property var emphasizedAccelerate: Easing.bezierCurve([0.3, 0.0, 0.8, 0.15])
+    // readonly property var emphasized: Easing.bezierCurve([0.2, 0.0, 0, 1.0])
+    // readonly property var emphasizedDecelerate: Easing.bezierCurve([0.05, 0.7, 0.1, 1.0])
+    // readonly property var emphasizedAccelerate: Easing.bezierCurve([0.3, 0.0, 0.8, 0.15])
 
-    readonly property var standard: Easing.bezierCurve([0.2, 0.0, 0, 1.0])
-    readonly property var standardDecelerate: Easing.bezierCurve([0, 0, 0, 1])
-    readonly property var standardAccelerate: Easing.bezierCurve([0.3, 0, 1, 1])
+    // readonly property var standard: Easing.bezierCurve([0.2, 0.0, 0, 1.0])
+    // readonly property var standardDecelerate: Easing.bezierCurve([0, 0, 0, 1])
+    // readonly property var standardAccelerate: Easing.bezierCurve([0.3, 0, 1, 1])
 
     // -- Spring Animations -- //
-    readonly property var fastSpatial: QtObject {
-        readonly property real spring: 3.84
-        readonly property real damping: 0.4
-        readonly property real mass: 0.3
-        readonly property real epsilon: 0.1
-    }
+    // readonly property var fastSpatial: QtObject {
+    //     readonly property real spring: 3.84
+    //     readonly property real damping: 0.4
+    //     readonly property real mass: 0.3
+    //     readonly property real epsilon: 0.1
+    // }
 
-    readonly property var defaultSpatial: QtObject {
-        readonly property real spring: 4.86
-        readonly property real damping: 0.4
-        readonly property real mass: 0.8
-        readonly property real epsilon: 0.1
-    }
+    // readonly property var defaultSpatial: QtObject {
+    //     readonly property real spring: 4.86
+    //     readonly property real damping: 0.4
+    //     readonly property real mass: 0.8
+    //     readonly property real epsilon: 0.1
+    // }
 
-    readonly property var slowSpatial: QtObject {
-        readonly property real spring: 3.2
-        readonly property real damping: 0.36
-        readonly property real mass: 1.0
-        readonly property real epsilon: 0.1
-    }
+    // readonly property var slowSpatial: QtObject {
+    //     readonly property real spring: 3.2
+    //     readonly property real damping: 0.36
+    //     readonly property real mass: 1.0
+    //     readonly property real epsilon: 0.1
+    // }
 
-    readonly property var fastEffects: QtObject {
-        readonly property real spring: 3.04
-        readonly property real damping: 0.1
-        readonly property real mass: 0.05
-        readonly property real epsilon: 0.005
-    }
+    // readonly property var fastEffects: QtObject {
+    //     readonly property real spring: 3.04
+    //     readonly property real damping: 0.1
+    //     readonly property real mass: 0.05
+    //     readonly property real epsilon: 0.005
+    // }
 
-    readonly property var defaultEffects: QtObject {
-        readonly property real spring: 2.56
-        readonly property real damping: 0.13
-        readonly property real mass: 0.1
-        readonly property real epsilon: 0.005
-    }
+    // readonly property var defaultEffects: QtObject {
+    //     readonly property real spring: 2.56
+    //     readonly property real damping: 0.13
+    //     readonly property real mass: 0.1
+    //     readonly property real epsilon: 0.005
+    // }
 
-    readonly property var slowEffects: QtObject {
-        readonly property real spring: 3.84
-        readonly property real damping: 0.27
-        readonly property real mass: 0.3
-        readonly property real epsilon: 0.005
-    }
+    // readonly property var slowEffects: QtObject {
+    //     readonly property real spring: 3.84
+    //     readonly property real damping: 0.27
+    //     readonly property real mass: 0.3
+    //     readonly property real epsilon: 0.005
+    // }
 
     // -- Legacy Animations -- //
     readonly property int animVeryFast: 75
