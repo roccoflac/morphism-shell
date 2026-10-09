@@ -34,24 +34,35 @@ PanelWindow {
         anchors { horizontalCenter: parent.horizontalCenter }
     }
 
-    PowerPill {
-        id: powerPill
+    Row {
+        layoutDirection: Qt.RightToLeft
         anchors {
             right: parent.right
             rightMargin: Config.barSideMargin
         }
+        spacing: 10
+
+        PowerPill {
+            id: powerPill
+        }
+
+        PopupPill {
+            id: popupPill
+        }
     }
+
     mask: Region {
         Region { item: notiPill }
-        Region { item: islandPill }
-        Region { item: powerPill }
         Region { item: workspacePill }
+        Region { item: islandPill }
+        Region { item: popupPill }
+        Region { item: powerPill }
     }
 
     HyprlandFocusGrab {
         id: grab
         windows: [root]
-        active: notiPill.notiExpanded || islandPill.islandExpanded || powerPill.batteryExpanded
+        active: notiPill.notiExpanded || islandPill.islandExpanded || powerPill.batteryExpanded //
         onCleared: {
             notiPill.notiExpanded = false
             islandPill.islandExpanded = false
