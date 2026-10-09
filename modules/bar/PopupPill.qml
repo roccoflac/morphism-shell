@@ -9,7 +9,7 @@ Rectangle {
     implicitWidth: {
         if (audioExpanded) return 300
         if (networkExpanded) return 500
-        return iconRow.implicitWidth + 40
+        return iconRow.implicitWidth + Config.pillPadding
     }
 
     implicitHeight: {

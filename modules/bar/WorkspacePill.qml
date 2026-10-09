@@ -5,7 +5,7 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    width: workspaceRow.implicitWidth + 40
+    width: workspaceRow.implicitWidth + Config.pillPadding
     height: Config.barHeight
     radius: Math.min(width, height) / 2
     color: ThemeService.mdSurface

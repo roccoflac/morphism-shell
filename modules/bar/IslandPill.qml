@@ -9,9 +9,9 @@ Rectangle {
 
     implicitWidth: {
         if (islandExpanded) return 500
-        if (activeNotification && notiExpanded) return notiExpandColumn.implicitWidth + 40
-        if (activeNotification) return notiRow.implicitWidth + 40
-        return idleRow.implicitWidth + 40
+        if (activeNotification && notiExpanded) return notiExpandColumn.implicitWidth + Config.pillPadding
+        if (activeNotification) return notiRow.implicitWidth + Config.pillPadding
+        return idleRow.implicitWidth + Config.pillPadding
     }
 
     implicitHeight: {
