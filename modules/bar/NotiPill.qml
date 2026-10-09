@@ -78,13 +78,13 @@ Rectangle {
     Loader {
         id: contentLoader
         anchors.fill: parent
-        anchors.margins: Config.radiusLg
+        // anchors.margins: Config.radiusLg
 
         active: notiExpanded
 
         opacity: notiExpanded ? 1 : 0
         visible: opacity > 0
-        source: "content/NotificationContent.qml"
+        source: "NotificationContent.qml"
 
         Behavior on opacity {
             NumberAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }

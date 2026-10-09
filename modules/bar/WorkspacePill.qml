@@ -31,7 +31,7 @@ Rectangle {
                         ? ThemeService.mdPrimary
                         : hasWindows
                             ? workspaceHover.hovered ? ThemeService.mdSecondary: (Qt.alpha(ThemeService.mdSecondary, 0.85))
-                            : workspaceHover.hovered ? Qt.alpha(ThemeService.mdSecondary, 0.75) : (Qt.alpha(ThemeService.mdSecondary, 0.5)) // i need to clean up this readability later
+                            : workspaceHover.hovered ? Qt.alpha(ThemeService.mdSecondary, 0.7) : (Qt.alpha(ThemeService.mdSecondary, 0.45)) // i need to clean up this readability later
                 scale: workspacePress.pressed ? 1 : (workspaceHover.hovered ? 1.06 : 1.0)
 
                 Behavior on scale {

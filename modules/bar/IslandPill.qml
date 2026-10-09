@@ -29,8 +29,6 @@ Rectangle {
     property bool activeNotification: NotificationService.currentNotification !== null
     property bool islandExpanded: false
     property bool notiExpanded: false
-    // required property var notificationData
-    // readonly property int expandedHeight: 500 // do this some other time
 
     Behavior on implicitWidth {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
@@ -210,7 +208,7 @@ Rectangle {
                 Text {
                     width: 500
                     text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
-                    font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
+                    font { pixelSize: Config.typeXl; family: Config.fontFamily2; weight: 500 }
                     color: ThemeService.mdOnSurface
                     wrapMode: Text.WordWrap
                     maximumLineCount: 2
@@ -218,12 +216,13 @@ Rectangle {
                     // textFormat: Text.PlainText
                 }
             }
-            // fix fucked up monospace font
+
+            // need to fix fucked up monospace font
             Text {
                 width: 500 // this is the max width it can be
                 text: NotificationService.currentNotification ? NotificationService.currentNotification.body : ""
                 font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
-                color: ThemeService.mdOnSurface
+                color: ThemeService.mdOnSurfaceVariant
                 wrapMode: Text.WordWrap
                 // textFormat: Text.RichText
             }
