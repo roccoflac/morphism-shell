@@ -1,17 +1,19 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 import "../../services"
 import "../../"
 
 Rectangle {
+    id: root
     implicitWidth: {
-        if (audioExpanded) return 500
+        if (audioExpanded) return 300
         if (networkExpanded) return 500
         return iconRow.implicitWidth + 40
     }
 
     implicitHeight: {
-        if (audioExpanded) return 300
+        if (audioExpanded) return 700
         if (networkExpanded) return 300
         return Config.barHeight
     }
@@ -20,10 +22,10 @@ Rectangle {
     color: ThemeService.mdSurface
     clip: true
 
-    Behavior on width {
+    Behavior on implicitWidth {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
-    Behavior on height {
+    Behavior on implicitHeight {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
     Behavior on radius {
@@ -39,7 +41,7 @@ Rectangle {
     Item {
         id: idleState
         anchors.fill: parent
-        // opacity: notiExpanded ? 0 : 1
+        opacity: audioExpanded || networkExpanded ? 0 : 1
         scale: opacity
         visible: opacity > 0
 
@@ -55,23 +57,38 @@ Rectangle {
             NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
         }
 
-        Row {
+        RowLayout {
             id: iconRow
             anchors.centerIn: parent
             spacing: Config.space200
 
             Text {
                 id: networkIcon
-                text: "\uf1eb" // fa-wifi
-                font { pixelSize: Config.type2xl }
-                color: ThemeService.mdSecondary
+                text: "\udb82\udd25" // fa-wifi
+                font { pixelSize: Config.typeXl +2 }
+                color: ThemeService.mdPrimary
+                scale: networkTap.pressed ? 1 : (networkHover.hovered ? 1.06 : 1.0)
+
+                HoverHandler { id: networkHover; cursorShape: Qt.PointingHandCursor }
+                TapHandler { id: networkTap; onTapped: networkExpanded = !networkExpanded }
+                Behavior on scale {
+                    NumberAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+                }
             }
 
             Text {
                 id: audioIcon
-                text: "\uefcf" // fa-bell
-                font { pixelSize: Config.type2xl }
-                color: ThemeService.mdSecondary
+                text: "\udb81\udd7e" // fa-bell
+                font { pixelSize: Config.typeXl +5 }
+                color: ThemeService.mdPrimary
+                scale: audioTap.pressed ? 1 : (audioHover.hovered ? 1.06 : 1.0)
+
+                HoverHandler { id: audioHover; cursorShape: Qt.PointingHandCursor }
+                TapHandler { id: audioTap; onTapped: audioExpanded = !audioExpanded  }
+
+                Behavior on scale {
+                    NumberAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+                }
             }
 
         }

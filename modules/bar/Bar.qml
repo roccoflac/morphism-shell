@@ -62,10 +62,12 @@ PanelWindow {
     HyprlandFocusGrab {
         id: grab
         windows: [root]
-        active: notiPill.notiExpanded || islandPill.islandExpanded || powerPill.batteryExpanded //
+        active: notiPill.notiExpanded || islandPill.islandExpanded || powerPill.batteryExpanded || popupPill.networkExpanded || popupPill.audioExpanded
         onCleared: {
             notiPill.notiExpanded = false
             islandPill.islandExpanded = false
+            popupPill.networkExpanded = false
+            popupPill.audioExpanded = false
             powerPill.batteryExpanded = false
         }
     }
