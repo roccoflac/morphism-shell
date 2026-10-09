@@ -22,3 +22,8 @@ to do:
 features i want long term:
 - app launcher similar to caelestia where you can do stuff like >wallpaper >settings etc
 - custom made sound effects (keeping it very subtle)
+
+## Credits:
+Took massive inspiration from:
+- Caelestia
+- illogical-impulse
