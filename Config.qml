@@ -30,28 +30,30 @@ Singleton {
     readonly property int radiusInf: 999
 
     // -- Spacing -- //
-    readonly property int spacingXs: 4
-    readonly property int spacingSmall: 8
-    readonly property int spacingMedium: 16
-    readonly property int spacingLarge: 24
+    readonly property int space50: 4
+    readonly property int space100: 8
+    readonly property int space150: 12
+    readonly property int space200: 16
+    readonly property int space250: 20
+    readonly property int space300: 24
 
     // -- Animation Durations -- //
-    readonly property var durations: QtObject {
-        readonly property int short1: 50
-        readonly property int short2: 100
-        readonly property int short3: 150
-        readonly property int short4: 200
+    // readonly property var durations: QtObject {
+    //     readonly property int short1: 50
+    //     readonly property int short2: 100
+    //     readonly property int short3: 150
+    //     readonly property int short4: 200
 
-        readonly property int medium1: 250
-        readonly property int medium2: 300
-        readonly property int medium3: 350
-        readonly property int medium4: 400
+    //     readonly property int medium1: 250
+    //     readonly property int medium2: 300
+    //     readonly property int medium3: 350
+    //     readonly property int medium4: 400
 
-        readonly property int long1: 450
-        readonly property int long2: 500
-        readonly property int long3: 550
-        readonly property int long4: 600
-    }
+    //     readonly property int long1: 450
+    //     readonly property int long2: 500
+    //     readonly property int long3: 550
+    //     readonly property int long4: 600
+    // }
 
     // -- Animation Curves \\
     // readonly property var emphasized: Easing.bezierCurve([0.2, 0.0, 0, 1.0])
