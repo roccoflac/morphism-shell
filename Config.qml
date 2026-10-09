@@ -20,13 +20,20 @@ Singleton {
     readonly property int type4xl: 50
 
     // -- Radius -- \\
-    readonly property int radiusXs: 6
-    readonly property int radiusSm: 10
+    readonly property int radiusXs: 4
+    readonly property int radiusSm: 8
     readonly property int radiusMd: 12
     readonly property int radiusLg: 16
     readonly property int radiusXl: 20
     readonly property int radius2xl: 24
+    readonly property int radius3xl: 28
     readonly property int radiusInf: 999
+
+    // -- Spacing -- //
+    readonly property int spacingXs: 4
+    readonly property int spacingSmall: 8
+    readonly property int spacingMedium: 16
+    readonly property int spacingLarge: 24
 
     // -- Animation Durations -- //
     readonly property var durations: QtObject {
