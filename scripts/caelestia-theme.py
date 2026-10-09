@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""Regenerate morphism-shell's ThemeService.qml using caelestia-cli's exact
-palette-selection pipeline.
-
-The extraction logic (nearest-neighbour 128px thumbnail -> Celebi quantizer ->
-caelestia's Score with filtering disabled + chroma/tone gate + DislikeAnalyzer
--> materialyoucolor scheme generation) is vendored verbatim under
-scripts/caelestia, so output matches caelestia-shell for the same wallpaper.
-
-Usage:
-    caelestia-theme.py <wallpaper> --output <path/to/ThemeService.qml>
-    caelestia-theme.py <wallpaper> --json          # emit scheme JSON to stdout
-
-Requires: pillow, materialyoucolor
-"""
 from __future__ import annotations
 
 import argparse
