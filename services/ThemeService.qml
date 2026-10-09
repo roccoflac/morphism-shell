@@ -50,7 +50,7 @@ Singleton {
     readonly property color mdSubtleOutline: "#9b8e8633"
     readonly property color mdSubtleOutlineVariant: "#4f453e33"
 
-    // static, non-scheme tokens
+    // Static semantic colours retained for the shell.
     readonly property color mdWarning: "#FFD1A9"
     readonly property color mdCharging: "#2ECC71"
 }
