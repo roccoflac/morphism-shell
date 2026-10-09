@@ -1,23 +1,27 @@
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import Quickshell
-import "../../../"
-import "../../../services"
+import "../../services"
+import "../../"
 
 ScrollView {
     anchors.fill: parent
     clip: true
 
-    Column {
+    ColumnLayout {
         anchors.fill: parent
-        spacing: 10
+        anchors.margins: 16
+        spacing: 12
 
         Repeater {
-            model: 4
+            model: 6
 
             Rectangle {
-                height: 100
-                width: 100
+                Layout.fillWidth: true
+                height: 80
                 color: ThemeService.mdSurfaceContainerLow
+                radius: Config.radiusLg
             }
         }
     }

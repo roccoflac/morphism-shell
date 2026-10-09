@@ -22,7 +22,7 @@ Rectangle {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
     Behavior on color {
-        ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+        ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
     }
 
     property bool notiExpanded: false
@@ -78,12 +78,12 @@ Rectangle {
     Loader {
         id: contentLoader
         anchors.fill: parent
-        // anchors.margins: Config.radiusLg
 
         active: notiExpanded
 
         opacity: notiExpanded ? 1 : 0
         visible: opacity > 0
+        // scale: opacity
         source: "NotificationContent.qml"
 
         Behavior on opacity {
