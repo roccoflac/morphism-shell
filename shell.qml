@@ -6,6 +6,6 @@ import "modules/settings"
 
 ShellRoot {
     Bar {}
-    // Settings {}
+    Settings {}
     // Launcher {}
 }
