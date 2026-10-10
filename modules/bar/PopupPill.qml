@@ -66,13 +66,19 @@ Rectangle {
                 id: networkIcon
                 text: "\udb82\udd25" // fa-wifi
                 font { pixelSize: Config.typeXl +2 }
-                color: ThemeService.mdPrimary
+                color: networkHover.hovered
+                       ? Qt.tint(ThemeService.mdPrimary, Qt.alpha(ThemeService.mdOnPrimary, 0.10))
+                       : ThemeService.mdPrimary
                 scale: networkTap.pressed ? 1 : (networkHover.hovered ? 1.06 : 1.0)
 
                 HoverHandler { id: networkHover; cursorShape: Qt.PointingHandCursor }
                 TapHandler { id: networkTap; onTapped: networkExpanded = !networkExpanded }
+
                 Behavior on scale {
                     NumberAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+                }
+                Behavior on color {
+                    ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
                 }
             }
 
@@ -80,7 +86,9 @@ Rectangle {
                 id: audioIcon
                 text: "\udb81\udd7e" // fa-bell
                 font { pixelSize: Config.typeXl +5 }
-                color: ThemeService.mdPrimary
+                color: audioHover.hovered
+                       ? Qt.tint(ThemeService.mdPrimary, Qt.alpha(ThemeService.mdOnPrimary, 0.10))
+                       : ThemeService.mdPrimary
                 scale: audioTap.pressed ? 1 : (audioHover.hovered ? 1.06 : 1.0)
 
                 HoverHandler { id: audioHover; cursorShape: Qt.PointingHandCursor }
@@ -88,6 +96,9 @@ Rectangle {
 
                 Behavior on scale {
                     NumberAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+                }
+                Behavior on color {
+                    ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
                 }
             }
 
