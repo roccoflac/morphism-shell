@@ -5,8 +5,21 @@ import "../../services"
 import "../../"
 
 Rectangle {
-    width: batteryExpanded ? 300 : batteryText.implicitWidth + Config.pillPadding
-    height: batteryExpanded ? 400 : Config.barHeight
+    id: root
+
+    property bool batteryExpanded: false
+
+    readonly property var battery: UPower.displayDevice
+    readonly property bool batteryReady: battery.ready
+    readonly property real batteryPercentage: batteryReady ? battery.percentage : 0
+
+    readonly property int expandedWidth: 300
+    readonly property int collapsedWidth: batteryText.implicitWidth + Config.pillPadding
+    readonly property int expandedHeight: 400
+    readonly property int collapsedHeight: Config.barHeight
+
+    width: batteryExpanded ? expandedWidth : collapsedWidth
+    height: batteryExpanded ? expandedHeight : collapsedHeight
     radius: batteryExpanded ? Config.radiusLg : Config.barHeight / 2
     color: batteryHover.hovered
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
@@ -26,7 +39,31 @@ Rectangle {
         ColorAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
 
-    property bool batteryExpanded: false
+    function batteryTextValue() {
+        if (!Config.showPercentage)
+            return "\uf011";
+
+        if (!batteryReady)
+            return "--";
+
+        return `${Math.round(batteryPercentage * 100)}%`;
+    }
+
+    function batteryTextColor() {
+        if (!batteryReady)
+            return ThemeService.mdOnSurface;
+
+        if (battery.state === 1 || battery.state === 4)
+            return ThemeService.mdCharging;
+
+        if (batteryPercentage <= 0.20)
+            return ThemeService.mdError;
+
+        if (batteryPercentage <= 0.30)
+            return ThemeService.mdWarning;
+
+        return ThemeService.mdOnSurface;
+    }
 
     Item {
         anchors.fill: parent
@@ -48,23 +85,10 @@ Rectangle {
         Text {
             id: batteryText
             anchors.centerIn: parent
-            text: Config.showPercentage ? UPower.displayDevice.ready ? `${Math.round(UPower.displayDevice.percentage * 100)}%` : "0%" : "\uf011"
+
+            text: root.batteryTextValue()
+            color: root.batteryTextColor()
             font { pixelSize: Config.typeXl; family: Config.fontFamily2 }
-
-            color: {
-                if (!UPower.displayDevice.ready) return ThemeService.mdOnSurface;
-
-                let state = UPower.displayDevice.state;
-                if (state === 1 || state === 4) {
-                    return ThemeService.mdCharging;
-                }
-
-                let pct = UPower.displayDevice.percentage;
-                if (pct <= 0.20) return ThemeService.mdError;
-                if (pct <= 0.30) return ThemeService.mdWarning;
-
-                return ThemeService.mdOnSurface;
-            }
 
             Behavior on color {
                 ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }

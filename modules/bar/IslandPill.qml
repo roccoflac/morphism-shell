@@ -7,18 +7,30 @@ import "../../"
 Rectangle {
     id: root
 
-    implicitWidth: {
-        if (islandExpanded) return 500
-        if (activeNotification && notiExpanded) return notiExpandColumn.implicitWidth + Config.pillPadding
-        if (activeNotification) return notiRow.implicitWidth + Config.pillPadding
-        return idleRow.implicitWidth + Config.pillPadding
-    }
+    readonly property bool isIslandOpen: islandExpanded
+    readonly property bool isNotificationExpanded: activeNotification && notiExpanded
+    readonly property bool isNotificationActive: activeNotification
 
-    implicitHeight: {
-        if (islandExpanded) return 300
-        if (activeNotification && notiExpanded) return notiExpandColumn.implicitHeight + 40
-        return Config.barHeight
-    }
+    readonly property real islandExpandedWidth: 500
+    readonly property real notiExpandedWidth: notiExpandColumn.implicitWidth + Config.pillPadding
+    readonly property real notiActiveWidth: notiRow.implicitWidth + Config.pillPadding
+    readonly property real idleWidth: idleRow.implicitWidth + Config.pillPadding
+
+    readonly property real islandExpandedHeight: 300
+    readonly property real notiExpandedHeight: notiExpandColumn.implicitHeight + Config.pillPadding
+    // readonly property real notiActiveHeight: notiRow.implicitWidth + Config.pillPadding
+    readonly property real idleHeight: Config.barHeight
+
+    implicitWidth:
+        isIslandOpen ? islandExpandedWidth :
+        isNotificationExpanded  ? notiExpandedWidth :
+        isNotificationActive ? notiActiveWidth :
+        idleWidth
+
+    implicitHeight:
+        isIslandOpen ? islandExpandedHeight :
+        isNotificationExpanded ? notiExpandedHeight :
+        idleHeight
 
     radius: Config.barHeight / 2
     color: (clockHover.hovered || notiHover.hovered)
@@ -206,6 +218,7 @@ Rectangle {
                 // }
 
                 Text {
+                    id: summaryText
                     width: 500
                     text: NotificationService.currentNotification ? NotificationService.currentNotification.summary : ""
                     font { pixelSize: Config.typeXl; family: Config.fontFamily2; weight: 500 }
@@ -219,6 +232,7 @@ Rectangle {
 
             // need to fix fucked up monospace font
             Text {
+                id: bodyText
                 width: 500 // this is the max width it can be
                 text: NotificationService.currentNotification ? NotificationService.currentNotification.body : ""
                 font { pixelSize: Config.typeXl; family: Config.fontFamily2 }

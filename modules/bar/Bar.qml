@@ -7,13 +7,14 @@ import "../../"
 
 Item {
     id: barRoot
-    height: Config.barHeight
 
     property alias notiPill: notiPill
     property alias workspacePill: workspacePill
     property alias islandPill: islandPill
     property alias popupPill: popupPill
     property alias powerPill: powerPill
+
+    height: Config.barHeight
 
     Row {
         anchors {
