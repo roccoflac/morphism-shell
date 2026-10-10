@@ -13,8 +13,23 @@ PanelWindow {
     exclusiveZone: Config.barHeight + Config.barMargin
     color: "transparent"
 
+    property alias appLauncher: appLauncher
+
     Bar {
         id: desktopBar
+        // anchors {
+        //     top: parent.top; left: parent.left; right: parent.right
+        //     topMargin: Config.barMargin
+        // }
+    }
+
+    Launcher {
+        id: appLauncher
+
+        anchors {
+            horizontalCenter: parent.horizontalCenter; bottom: parent.bottom
+            bottomMargin: Config.barMargin
+        }
     }
 
     mask: Region {
@@ -23,6 +38,7 @@ PanelWindow {
         Region { item: desktopBar.islandPill }
         Region { item: desktopBar.popupPill }
         Region { item: desktopBar.powerPill }
+        Region { item: appLauncher.visible ? appLauncher : null }
     }
 
     HyprlandFocusGrab {
@@ -34,6 +50,7 @@ PanelWindow {
             desktopBar.popupPill.networkExpanded ||
             desktopBar.popupPill.audioExpanded ||
             desktopBar.powerPill.batteryExpanded
+            appLauncher.isOpen
         }
         onCleared: {
             desktopBar.notiPill.notiExpanded = false
@@ -41,6 +58,7 @@ PanelWindow {
             desktopBar.popupPill.networkExpanded = false
             desktopBar.popupPill.audioExpanded = false
             desktopBar.powerPill.batteryExpanded = false
+            appLauncher.isOpen = false
         }
     }
 }

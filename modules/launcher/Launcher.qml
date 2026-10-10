@@ -1,11 +1,24 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
-import "../../"
 import "../../services"
+import "../../"
 
-FloatingWindow {
-    id: root
-    implicitWidth: 300
-    implicitHeight: 400
-    color: ThemeService.mdSurfaceContainerLowest
+Rectangle {
+    id: launcherRoot
+    property bool isOpen: false
+
+    width: 500
+    height: 350
+    color: ThemeService.mdSurface
+    radius: Config.radiusLg
+    opacity: isOpen ? 1.0 : 0.0
+    visible: opacity > 0
+
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.margins: Config.space200
+
+        Item { Layout.fillHeight: true }
+    }
 }

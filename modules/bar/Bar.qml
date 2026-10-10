@@ -17,7 +17,6 @@ Item {
         top: parent.top; left: parent.left; right: parent.right
         topMargin: Config.barMargin
     }
-
     height: Config.barHeight
 
     Row {
