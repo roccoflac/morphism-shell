@@ -7,9 +7,9 @@ import "../../"
 
 ScrollView {
     anchors.fill: parent
-    clip: true
     anchors.margins: Config.space200
     ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+    clip: true
 
     ColumnLayout {
         anchors.fill: parent

@@ -38,7 +38,7 @@ PanelWindow {
         Region { item: desktopBar.islandPill }
         Region { item: desktopBar.popupPill }
         Region { item: desktopBar.powerPill }
-        // Region { item: appLauncher.visible ? appLauncher : null }
+        Region { item: appLauncher.visible ? appLauncher : null }
     }
 
     HyprlandFocusGrab {

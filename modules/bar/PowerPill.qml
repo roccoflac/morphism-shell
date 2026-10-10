@@ -40,28 +40,17 @@ Rectangle {
     }
 
     function batteryTextValue() {
-        if (!Config.showPercentage)
-            return "\uf011";
-
-        if (!batteryReady)
-            return "--";
-
+        if (!Config.showPercentage) return "\uf011";
+        if (!batteryReady) return "--";
         return `${Math.round(batteryPercentage * 100)}%`;
     }
 
     function batteryTextColor() {
-        if (!batteryReady)
-            return ThemeService.mdOnSurface;
-
-        if (battery.state === 1 || battery.state === 4)
-            return ThemeService.mdCharging;
-
-        if (batteryPercentage <= 0.20)
-            return ThemeService.mdError;
-
-        if (batteryPercentage <= 0.30)
-            return ThemeService.mdWarning;
-
+        if (!Config.showPercentage) return ThemeService.mdPrimary;
+        if (!batteryReady) return ThemeService.mdOnSurface;
+        if (battery.state === 1 || battery.state === 4) return ThemeService.mdCharging;
+        if (batteryPercentage <= 0.20) return ThemeService.mdError;
+        if (batteryPercentage <= 0.30) return ThemeService.mdWarning;
         return ThemeService.mdOnSurface;
     }
 
