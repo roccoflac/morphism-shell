@@ -19,19 +19,22 @@ Rectangle {
             model: Config.workspaceAmount
 
             Rectangle {
+                id: workspaceButton
+
                 required property int index
                 readonly property int wsId: index + 1
                 readonly property bool isActive: Hyprland.focusedWorkspace?.id === wsId
                 readonly property bool hasWindows: Hyprland.workspaces.values.some(ws => ws.id === wsId)
+                readonly property real emptyWorkspaceAlpha: workspaceHover.hovered ? 0.7  : 0.45
+                readonly property real hasWindowsAlpha: workspaceHover.hovered ? 1.0  : 0.85
 
                 width: 15
                 height: width
                 radius: Math.min(width, height) / 2
-                color: isActive
-                        ? ThemeService.mdPrimary
-                        : hasWindows
-                            ? workspaceHover.hovered ? ThemeService.mdSecondary: (Qt.alpha(ThemeService.mdSecondary, 0.85))
-                            : workspaceHover.hovered ? Qt.alpha(ThemeService.mdSecondary, 0.7) : (Qt.alpha(ThemeService.mdSecondary, 0.45)) // i need to clean up this readability later
+                color:
+                    isActive ? ThemeService.mdPrimary :
+                    hasWindows ? Qt.alpha(ThemeService.mdSecondary, hasWindowsAlpha) :
+                    Qt.alpha(ThemeService.mdSecondary, emptyWorkspaceAlpha)
                 scale: workspacePress.pressed ? 1 : (workspaceHover.hovered ? 1.06 : 1.0)
 
                 Behavior on scale {
@@ -42,7 +45,10 @@ Rectangle {
                 }
 
                 HoverHandler { id: workspaceHover }
-                TapHandler { id: workspacePress; onTapped: Hyprland.dispatch('hl.dsp.focus({ workspace = "' + wsId + '" })') }
+                TapHandler {
+                    id: workspacePress
+                    onTapped: Hyprland.dispatch('hl.dsp.focus({ workspace = "' + wsId + '" })')
+                }
             }
         }
     }

@@ -7,7 +7,7 @@ import "../../"
 Rectangle {
     id: root
 
-    readonly property bool isIslandOpen: islandExpanded
+    readonly property bool isIslandExpanded: islandExpanded
     readonly property bool isNotificationExpanded: activeNotification && notiExpanded
     readonly property bool isNotificationActive: activeNotification
 
@@ -18,17 +18,16 @@ Rectangle {
 
     readonly property real islandExpandedHeight: 300
     readonly property real notiExpandedHeight: notiExpandColumn.implicitHeight + Config.pillPadding
-    // readonly property real notiActiveHeight: notiRow.implicitWidth + Config.pillPadding
     readonly property real idleHeight: Config.barHeight
 
     implicitWidth:
-        isIslandOpen ? islandExpandedWidth :
+        isIslandExpanded ? islandExpandedWidth :
         isNotificationExpanded  ? notiExpandedWidth :
         isNotificationActive ? notiActiveWidth :
         idleWidth
 
     implicitHeight:
-        isIslandOpen ? islandExpandedHeight :
+        isIslandExpanded ? islandExpandedHeight :
         isNotificationExpanded ? notiExpandedHeight :
         idleHeight
 

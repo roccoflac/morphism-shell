@@ -6,18 +6,23 @@ import "../../"
 
 Rectangle {
     id: root
-    implicitWidth: {
-        if (audioExpanded) return 300
-        if (networkExpanded) return 500
-        return iconRow.implicitWidth + Config.pillPadding
-    }
 
-    implicitHeight: {
-        if (audioExpanded) return 700
-        if (networkExpanded) return 300
-        return Config.barHeight
-    }
+    readonly property int networkExpandedWidth: 500
+    readonly property int audioExpandedWidth: 300
+    readonly property int collapsedWidth: iconRow.implicitWidth + Config.pillPadding
+    readonly property int networkExpandedHeight: 400
+    readonly property int audioExpandedHeight: 500
+    readonly property int collapsedHeight: Config.barHeight
 
+    implicitWidth:
+        networkExpanded ? networkExpandedWidth :
+        audioExpanded ? audioExpandedWidth :
+        collapsedWidth
+
+    implicitHeight:
+        networkExpanded ? networkExpandedHeight :
+        audioExpanded ? audioExpandedHeight :
+        collapsedHeight
     radius: Config.barHeight / 2
     color: ThemeService.mdSurface
     clip: true
