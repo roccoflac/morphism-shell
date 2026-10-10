@@ -15,7 +15,7 @@ Singleton {
         bodySupported: true
         imageSupported: true
         bodyMarkupSupported: true
-        keepOnReload: true // keeping it true while testing, put false later
+        keepOnReload: false // keep it true while testing
 
         onNotification: (notification) => {
             notification.tracked = true;
@@ -28,7 +28,7 @@ Singleton {
 
     Timer {
         id: dismissTimer
-        interval: Config.notificationNormalTimeout + 100000
+        interval: Config.notificationNormalTimeout // + 100000
         repeat: false
         running: false
         onTriggered: {
