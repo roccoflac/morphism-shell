@@ -120,6 +120,7 @@ Singleton {
     // -- Bar Config -- \\
     readonly property int barSideMargin: 10
     readonly property int barHeight: 40
+    readonly property int barMargin: 10
     readonly property int pillPadding: 40
     readonly property int workspaceAmount: 5
 

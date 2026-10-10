@@ -5,13 +5,20 @@ import Quickshell.Hyprland
 import "../../services"
 import "../../"
 
-PanelWindow {
-    id: root
-    anchors { top: true; left: true; right: true }
-    margins { top: 10 } // consider doing side margins here instead of on the pills?
-    implicitHeight: 400
-    exclusiveZone: Config.barHeight
-    color: "transparent"
+Item {
+    id: barRoot
+    property alias notiPill: notiPill
+    property alias workspacePill: workspacePill
+    property alias islandPill: islandPill
+    property alias popupPill: popupPill
+    property alias powerPill: powerPill
+
+    anchors {
+        top: parent.top; left: parent.left; right: parent.right
+        topMargin: Config.barMargin
+    }
+
+    height: Config.barHeight
 
     Row {
         anchors {
@@ -23,7 +30,7 @@ PanelWindow {
         NotiPill {
             id: notiPill
         }
-        // WIP
+
         WorkspacePill {
             id: workspacePill
         }
@@ -35,40 +42,18 @@ PanelWindow {
     }
 
     Row {
-        layoutDirection: Qt.RightToLeft
         anchors {
             right: parent.right
             rightMargin: Config.barSideMargin
         }
         spacing: 10
 
-        PowerPill {
-            id: powerPill
-        }
-
         PopupPill {
             id: popupPill
         }
-    }
 
-    mask: Region {
-        Region { item: notiPill }
-        Region { item: workspacePill }
-        Region { item: islandPill }
-        Region { item: popupPill }
-        Region { item: powerPill }
-    }
-
-    HyprlandFocusGrab {
-        id: grab
-        windows: [root]
-        active: notiPill.notiExpanded || islandPill.islandExpanded || powerPill.batteryExpanded || popupPill.networkExpanded || popupPill.audioExpanded
-        onCleared: {
-            notiPill.notiExpanded = false
-            islandPill.islandExpanded = false
-            popupPill.networkExpanded = false
-            popupPill.audioExpanded = false
-            powerPill.batteryExpanded = false
+        PowerPill {
+            id: powerPill
         }
     }
 }

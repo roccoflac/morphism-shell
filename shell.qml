@@ -1,11 +1,10 @@
 import Quickshell
 import QtQuick
-import "modules/bar"
-import "modules/launcher"
-import "modules/settings"
 
 ShellRoot {
-    Bar {}
-    // Settings {}
-    // Launcher {}
+    id: shell
+
+    DesktopCanvas {
+        id: mainCanvas
+    }
 }
