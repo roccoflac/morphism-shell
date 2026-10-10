@@ -55,7 +55,7 @@ Rectangle {
         HoverHandler {
             id: notiHover
             cursorShape: Qt.PointingHandCursor
-            onHoveredChanged: if (hovered) notiAnimation.start() // maybe make this happen on notification received instead of hover?
+            onHoveredChanged: if (hovered) notiAnimation.start()
         }
 
         TapHandler {
