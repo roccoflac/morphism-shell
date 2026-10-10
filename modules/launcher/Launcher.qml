@@ -14,7 +14,11 @@ Rectangle {
     radius: Config.radiusLg
     opacity: isOpen ? 1.0 : 0.0
     visible: opacity > 0
+    // scale: opacity
 
+    Behavior on opacity {
+        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
+    }
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: Config.space200
