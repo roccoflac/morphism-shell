@@ -17,10 +17,10 @@ PanelWindow {
 
     Bar {
         id: desktopBar
-        // anchors {
-        //     top: parent.top; left: parent.left; right: parent.right
-        //     topMargin: Config.barMargin
-        // }
+        anchors {
+            top: parent.top; left: parent.left; right: parent.right
+            topMargin: Config.barMargin
+        }
     }
 
     Launcher {
@@ -38,20 +38,20 @@ PanelWindow {
         Region { item: desktopBar.islandPill }
         Region { item: desktopBar.popupPill }
         Region { item: desktopBar.powerPill }
-        Region { item: appLauncher.visible ? appLauncher : null }
+        // Region { item: appLauncher.visible ? appLauncher : null }
     }
 
     HyprlandFocusGrab {
         id: grab
         windows: [root]
-        active: {
+        active:
             desktopBar.notiPill.notiExpanded ||
             desktopBar.islandPill.islandExpanded ||
             desktopBar.popupPill.networkExpanded ||
             desktopBar.popupPill.audioExpanded ||
-            desktopBar.powerPill.batteryExpanded
+            desktopBar.powerPill.batteryExpanded ||
             appLauncher.isOpen
-        }
+
         onCleared: {
             desktopBar.notiPill.notiExpanded = false
             desktopBar.islandPill.islandExpanded = false
