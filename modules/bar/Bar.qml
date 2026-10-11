@@ -21,7 +21,7 @@ Item {
             left: parent.left
             leftMargin: Config.barSideMargin
         }
-        spacing: 10
+        spacing: Config.space150
 
         NotiPill {
             id: notiPill
@@ -42,7 +42,7 @@ Item {
             right: parent.right
             rightMargin: Config.barSideMargin
         }
-        spacing: 10
+        spacing: Config.space150
 
         PopupPill {
             id: popupPill

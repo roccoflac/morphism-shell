@@ -4,7 +4,7 @@ import Quickshell
 import Quickshell.Services.Notifications
 import "../"
 
-Singleton {
+Item {
     id: root
 
     property alias notifications: server.trackedNotifications
@@ -17,7 +17,7 @@ Singleton {
         imageSupported: true
         bodyMarkupSupported: true
         inlineReplySupported: true
-        keepOnReload: false // keep it true while testing
+        keepOnReload: true // keep it true while testing
 
         onNotification: (notification) => {
             notification.tracked = true;

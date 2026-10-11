@@ -6,9 +6,9 @@ import "../../"
 Rectangle {
     id: root
 
-    readonly property int expandedWidth: 320
+    readonly property int expandedWidth: 360
     readonly property int collapsedWidth: Config.barHeight
-    readonly property int expandedHeight: 400
+    readonly property int expandedHeight: 450
     readonly property int collapsedHeight: Config.barHeight
 
     width: notiExpanded ? expandedWidth : collapsedWidth
@@ -82,6 +82,7 @@ Rectangle {
         }
     }
 
+    // kinda lags the animation?
     Loader {
         id: contentLoader
         anchors.fill: parent
@@ -90,11 +91,18 @@ Rectangle {
 
         opacity: notiExpanded ? 1 : 0
         visible: opacity > 0
-        // scale: opacity
+        scale: opacity
         source: "NotificationContent.qml"
 
         Behavior on opacity {
-            NumberAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+            NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
+        }
+        Behavior on scale {
+            NumberAnimation {
+                duration: Config.animNormal
+                easing.type: Easing.OutBack
+                easing.overshoot: 0.5
+            }
         }
     }
 }
