@@ -16,6 +16,7 @@ Singleton {
         bodySupported: true
         imageSupported: true
         bodyMarkupSupported: true
+        inlineReplySupported: true
         keepOnReload: false // keep it true while testing
 
         onNotification: (notification) => {

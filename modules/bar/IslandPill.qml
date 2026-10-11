@@ -181,9 +181,7 @@ Rectangle {
         Column {
             id: notiExpandColumn
             anchors {
-                top: parent.top
-                horizontalCenter: parent.horizontalCenter
-                topMargin: 16
+                centerIn: parent
             }
             spacing: 10
 
@@ -241,6 +239,30 @@ Rectangle {
                 color: ThemeService.mdOnSurfaceVariant
                 wrapMode: Text.WordWrap
                 // textFormat: Text.RichText
+            }
+
+            Row {
+                visible: NotificationService.currentNotification.hasInlineReply
+
+                Rectangle {
+                    width: notiExpandRow.implicitWidth
+                    height: 40
+                    color: ThemeService.mdSurfaceContainerLow
+                    radius: Config.radiusLg
+
+                    TextInput {
+                        anchors {
+                            fill: parent
+                            leftMargin: Config.space150
+                            rightMargin: Config.space150
+                        }
+                        color: ThemeService.mdOnSurface
+                    }
+                }
+                // TextField {
+                //     id: replyInput
+                //     placeholderText: NotificationService.inlineReplyPlaceholder || "Type a reply..."
+                // }
             }
         }
     }
