@@ -36,7 +36,7 @@ Rectangle {
         isNotificationExpanded ? notiExpandedHeight :
         idleHeight
 
-    radius: Config.barHeight / 2
+    radius: Config.radiusXl
     color: (clockHover.hovered || notiHover.hovered)
            ? Qt.tint(ThemeService.mdSurface, Qt.alpha(ThemeService.mdOnSurface, 0.08))
            : ThemeService.mdSurface
@@ -50,9 +50,6 @@ Rectangle {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
     Behavior on implicitHeight {
-        NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
-    }
-    Behavior on radius {
         NumberAnimation { duration: Config.animSlow; easing.type: Config.easeEnter }
     }
     Behavior on color {
@@ -175,7 +172,10 @@ Rectangle {
 
         TapHandler {
             acceptedButtons: Qt.RightButton
-            onTapped: NotificationService.currentNotification = null
+            onTapped: {
+                NotificationService.currentNotification.dismiss();
+                NotificationService.currentNotification = null
+            }
         }
 
         Column {
@@ -200,13 +200,11 @@ Rectangle {
 
                 Image {
                     id: notiExpandImage
-
-                    source: NotificationService.currentNotification ? NotificationService.currentNotification.image : ""
                     height: dummyText.implicitHeight
                     width: height
+                    source: NotificationService.currentNotification ? NotificationService.currentNotification.image : ""
                     fillMode: Image.PreserveAspectFit
-                    opacity: source.toString() !== ""
-                    visible: opacity > 0
+                    visible: source.toString() !== ""
                 }
 
                 // Image {
