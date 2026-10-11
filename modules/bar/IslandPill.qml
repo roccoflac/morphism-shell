@@ -241,29 +241,29 @@ Rectangle {
                 // textFormat: Text.RichText
             }
 
-            Row {
-                visible: NotificationService.currentNotification.hasInlineReply
+            // Row {
+            //     visible: NotificationService.currentNotification.hasInlineReply
 
-                Rectangle {
-                    width: notiExpandRow.implicitWidth
-                    height: 40
-                    color: ThemeService.mdSurfaceContainerLow
-                    radius: Config.radiusLg
+            //     Rectangle {
+            //         width: notiExpandRow.implicitWidth
+            //         height: 40
+            //         color: ThemeService.mdSurfaceContainerLow
+            //         radius: Config.radiusLg
 
-                    TextInput {
-                        anchors {
-                            fill: parent
-                            leftMargin: Config.space150
-                            rightMargin: Config.space150
-                        }
-                        color: ThemeService.mdOnSurface
-                    }
-                }
-                // TextField {
-                //     id: replyInput
-                //     placeholderText: NotificationService.inlineReplyPlaceholder || "Type a reply..."
-                // }
-            }
+            //         TextInput {
+            //             anchors {
+            //                 fill: parent
+            //                 leftMargin: Config.space150
+            //                 rightMargin: Config.space150
+            //             }
+            //             color: ThemeService.mdOnSurface
+            //         }
+            //     }
+            //     // TextField {
+            //     //     id: replyInput
+            //     //     placeholderText: NotificationService.inlineReplyPlaceholder || "Type a reply..."
+            //     // }
+            // }
         }
     }
 }

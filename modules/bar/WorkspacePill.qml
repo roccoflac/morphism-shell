@@ -25,8 +25,8 @@ Rectangle {
                 readonly property int wsId: index + 1
                 readonly property bool isActive: Hyprland.focusedWorkspace?.id === wsId
                 readonly property bool hasWindows: Hyprland.workspaces.values.some(ws => ws.id === wsId)
-                readonly property real emptyWorkspaceAlpha: workspaceHover.hovered ? 0.7  : 0.45
-                readonly property real hasWindowsAlpha: workspaceHover.hovered ? 1.0  : 0.85
+                readonly property real emptyWorkspaceAlpha: workspaceHover.hovered ? 0.7  : 0.4
+                readonly property real hasWindowsAlpha: workspaceHover.hovered ? 1.0  : 0.75
 
                 width: 15
                 height: width
@@ -34,7 +34,7 @@ Rectangle {
                 color:
                     isActive ? ThemeService.mdPrimary :
                     hasWindows ? Qt.alpha(ThemeService.mdSecondary, hasWindowsAlpha) :
-                    Qt.alpha(ThemeService.mdSecondary, emptyWorkspaceAlpha)
+                    Qt.alpha(ThemeService.mdTertiary, emptyWorkspaceAlpha)
                 scale: workspacePress.pressed ? 1 : (workspaceHover.hovered ? 1.06 : 1.0)
 
                 Behavior on scale {
