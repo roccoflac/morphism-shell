@@ -124,10 +124,6 @@ Singleton {
     readonly property int pillPadding: 40
     readonly property int workspaceAmount: 5
 
-    // -- Screenshot Directory -- //
-    readonly property var screenshots: ({
-        saveDirectory: "$HOME/Pictures/Screenshots"
-    })
     // -- Battery -- \\
     readonly property bool showPercentage: true
 
@@ -136,13 +132,6 @@ Singleton {
     readonly property int notificationNormalTimeout: 3000
     readonly property int notificationCriticalTimeout: 5000
 
-    // -- qBittorrent WebUI -- \\
-    readonly property var qbt: ({
-        host: "http://localhost:8080",
-        user: "admin",
-        password: "W2ut$rlq3txKkM" // pass is stored in plain text idrc
-    })
-
-    // -- VPN -- //
+    // -- VPN -- // not implemented yet (soon)
     readonly property var vpn: ({ country: "CH" })
 }
