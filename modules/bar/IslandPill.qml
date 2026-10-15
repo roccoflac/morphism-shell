@@ -125,7 +125,11 @@ Rectangle {
 
         TapHandler {
             acceptedButtons: Qt.RightButton
-            onTapped: NotificationService.currentNotification = null
+            onTapped: {
+                NotificationService.currentNotification.dismiss();
+                NotificationService.currentNotification = null
+                root.notiExpanded = false
+            }
         }
 
         Row {
@@ -175,6 +179,7 @@ Rectangle {
             onTapped: {
                 NotificationService.currentNotification.dismiss();
                 NotificationService.currentNotification = null
+                root.notiExpanded = false
             }
         }
 
