@@ -11,7 +11,7 @@ Rectangle {
     readonly property int audioExpandedWidth: 300
     readonly property int collapsedWidth: iconRow.implicitWidth + Config.pillPadding
     readonly property int networkExpandedHeight: 400
-    readonly property int audioExpandedHeight: 500
+    readonly property int audioExpandedHeight: 400
     readonly property int collapsedHeight: Config.barHeight
 
     implicitWidth:
@@ -54,7 +54,7 @@ Rectangle {
             NumberAnimation {
                 duration: Config.animSlow
                 easing.type: Easing.OutBack
-                easing.overshoot: 1
+                easing.overshoot: 0.5
             }
         }
 
@@ -105,6 +105,90 @@ Rectangle {
                 Behavior on color {
                     ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
                 }
+            }
+
+        }
+    }
+    // i need to modularise this and put it on a loader in the future
+    Item {
+        id: audioState
+        anchors.fill: parent
+        anchors.margins: Config.space200
+        opacity: audioExpanded && !networkExpanded ? 1 : 0
+        visible: opacity > 0
+        // scale: opacity
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: Config.animSlow
+                easing.type: Easing.OutBack
+                easing.overshoot: 0.5
+            }
+        }
+
+        Behavior on opacity {
+            NumberAnimation { duration: Config.animVeryFast; easing.type: Config.easeEnter }
+        }
+
+        ColumnLayout {
+            id: audioColumn
+            anchors.fill: parent
+            spacing: Config.space150
+
+            Rectangle {
+                id: outputCard
+                Layout.fillWidth: true
+                Layout.preferredHeight: 100
+                border { width: 1; color: ThemeService.mdSubtleOutlineVariant }
+                radius: Config.radiusLg
+                color: ThemeService.mdSurfaceContainer
+
+                ColumnLayout {
+                    id: outputColumn
+                    anchors.fill: parent
+                    anchors.margins: Config.space150
+                    spacing: Config.space150
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        Rectangle {
+                            Layout.preferredWidth: 40
+                            Layout.preferredHeight: Layout.preferredWidth
+                            color: (muteButtonPressed.pressed || muteButtonPressed.pressed)
+                                       ? Qt.tint(ThemeService.mdSurfaceContainerHighest, Qt.alpha(ThemeService.mdPrimary, 0.10))
+                                       : (muteButtonHovered.hovered || muteButtonHovered.hovered)
+                                         ? Qt.tint(ThemeService.mdSurfaceContainerHighest, Qt.alpha(ThemeService.mdPrimary, 0.08))
+                                         : ThemeService.mdSurfaceContainerHighest
+                            radius: Config.radiusMd
+
+                            Behavior on color {
+                                ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
+                            }
+                            HoverHandler { id: muteButtonHovered }
+                            TapHandler { id: muteButtonPressed }
+
+                            Text {
+                                id: notiIcon
+                                anchors.centerIn: parent
+                                text: "\uf0f3" // fa-bell
+                                font { pixelSize: Config.type2xl }
+                                color: ThemeService.mdPrimary
+                            }
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+                }
+            }
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
             }
 
         }
