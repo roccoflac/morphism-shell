@@ -112,6 +112,9 @@ Rectangle {
     // i need to modularise this and put it on a loader in the future
     Item {
         id: audioState
+
+        property bool outputMuted: false
+
         anchors.fill: parent
         anchors.margins: Config.space200
         opacity: audioExpanded && !networkExpanded ? 1 : 0
@@ -156,23 +159,31 @@ Rectangle {
                         Rectangle {
                             Layout.preferredWidth: 40
                             Layout.preferredHeight: Layout.preferredWidth
-                            color: (muteButtonPressed.pressed || muteButtonPressed.pressed)
-                                       ? Qt.tint(ThemeService.mdSurfaceContainerHighest, Qt.alpha(ThemeService.mdPrimary, 0.10))
-                                       : (muteButtonHovered.hovered || muteButtonHovered.hovered)
-                                         ? Qt.tint(ThemeService.mdSurfaceContainerHighest, Qt.alpha(ThemeService.mdPrimary, 0.08))
-                                         : ThemeService.mdSurfaceContainerHighest
+                            // going to switch to error coloring but i need to clean this up
+                            color: muteButtonPressed.pressed
+                                        ? Qt.tint(ThemeService.mdSurfaceContainerHighest, Qt.alpha(ThemeService.mdPrimary, 0.10))
+                                        : muteButtonHovered.hovered
+                                            ? Qt.tint(ThemeService.mdSurfaceContainerHighest, Qt.alpha(ThemeService.mdPrimary, 0.08))
+                                            : ThemeService.mdSurfaceContainerHighest
                             radius: Config.radiusMd
+                            scale: muteButtonPressed.pressed ? 0.96 : 1.0
 
+                            Behavior on scale {
+                                NumberAnimation { duration: Config.animFast; easing.type: Config.easeEnter }
+                            }
                             Behavior on color {
                                 ColorAnimation { duration: Config.animNormal; easing.type: Config.easeEnter }
                             }
                             HoverHandler { id: muteButtonHovered }
-                            TapHandler { id: muteButtonPressed }
+                            TapHandler {
+                                id: muteButtonPressed
+                                onTapped: audioState.outputMuted = !audioState.outputMuted
+                            }
 
                             Text {
                                 id: notiIcon
                                 anchors.centerIn: parent
-                                text: "\uf0f3" // fa-bell
+                                text: "\udb81\udd7e"
                                 font { pixelSize: Config.type2xl }
                                 color: ThemeService.mdPrimary
                             }
